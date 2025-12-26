@@ -6,7 +6,6 @@ import mod from "../../../mod.json";
 import { useLocalization } from "cs2/l10n";
 import { game, Number2 } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
-import { useState } from "react";
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -19,40 +18,65 @@ export const TopoPanelComponent = () => {
     const isPhotoMode = useValue(game.activeGamePanel$)?.__Type == game.GamePanelType.PhotoMode;
     const HideTopoTogglePanel = useValue(HideTopoTogglePanel$);
     const PanelPosition = useValue(PanelPosition$);
+
+    
     // translation handling. Translates using locale keys that are defined in C# or fallback string here.
     
     const { translate } = useLocalization();
+
+
+    console.log("window.innerWidth " + window.innerWidth);  
+    console.log("window.innerHeight " + window.innerHeight); 
+    
+    let icon = document.getElementById('TopoTogglePanel');
+    if (icon) 
+    {
+        
+        let iconRight = (icon.offsetLeft + icon.offsetWidth) / window.innerWidth;
+        console.log("icon.offsetLeft " + icon.offsetLeft);
+        console.log("icon.offsetWidth " + icon.offsetWidth);
+    }
          
     // This either returns an empty JSX component or a small panel with TOPO title and a button to toggle contour lines.
     return (
         <>
-            <div id = "TopoTogglePanel">
-                {!isPhotoMode && !HideTopoTogglePanel && (
-                    <Portal>
-                        <Panel                            
-                            draggable
-                            className={styles.panel}
-                            header={"TOPO"} // This is intentionally not translatable.
-                            initialPosition={PanelPosition}                       
-                            >
-                            <div className={styles.panelSection}>
-                                <VanillaComponentResolver.instance.ToolButton
-                                    className={VanillaComponentResolver.instance.toolButtonTheme.button} 
-                                    selected={ForceContourLines}
-                                    tooltip={translate("Options.OPTION_DESCRIPTION[InputSettings.Gamepad.Tool/Toggle Contour Lines/binding]", "Toggles the topographic contour lines on and off.")}
-                                    onSelect={() => 
-                                    { 
-                                        trigger(mod.id, "ToggleContourLines");
-                                        trigger(mod.id, "SetPanelPosition", PanelPosition);
-                                    }} 
-                                    src={ContourLinesSrc}
-                                    focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}>                          
-                                </VanillaComponentResolver.instance.ToolButton>
-                            </div>
-                        </Panel>
-                    </Portal>
-                )}
-            </div>
+            {!isPhotoMode && !HideTopoTogglePanel && (
+                <Portal>
+                    <Panel                 
+                        id = "TopoTogglePanel"    
+                        draggable
+                        className={styles.panel}
+                        header={"TOPO"} // This is intentionally not translatable.
+                        initialPosition={PanelPosition}                       
+                        >
+                        <div className={styles.panelSection}>
+                            <VanillaComponentResolver.instance.ToolButton
+                                className={VanillaComponentResolver.instance.toolButtonTheme.button} 
+                                selected={ForceContourLines}
+                                tooltip={translate("Options.OPTION_DESCRIPTION[InputSettings.Gamepad.Tool/Toggle Contour Lines/binding]", "Toggles the topographic contour lines on and off.")}
+                                onSelect={() => 
+                                { 
+                                    trigger(mod.id, "ToggleContourLines");
+
+                                    let icon = document.getElementById('TopoTogglePanel');
+                                    if (icon) 
+                                    {
+                                        console.log("icon.offsetLeft " + icon.offsetLeft);
+                                        console.log("icon.offsetWidth " + icon.offsetWidth);
+
+
+                                        trigger(mod.id, "SetPanelPosition", { x: (icon.offsetLeft) / window.innerWidth + .004, y: (icon.offsetTop) / window.innerHeight + .049});
+                                    }
+
+                                    
+                                }} 
+                                src={ContourLinesSrc}
+                                focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}>                          
+                            </VanillaComponentResolver.instance.ToolButton>
+                        </div>
+                    </Panel>
+                </Portal>
+            )}
         </>
     );
 }
