@@ -11,6 +11,7 @@ using Game.Modding;
 using Game.Settings;
 using Game.UI;
 using Game.UI.Widgets;
+using Unity.Mathematics;
 
 namespace TopoToggle.Settings
 {
@@ -34,6 +35,12 @@ namespace TopoToggle.Settings
 
         [SettingsUIHidden]
         public bool ForceContourLines { get; set; }
+
+        [SettingsUIHidden]
+        public float2 GamePanelPosition { get; set; }
+
+        [SettingsUIHidden]
+        public float2 EditorPanelPosition { get; set; }
 
         [SettingsUISection(kSection)]
         public bool HidePanel { get; set; }

@@ -12,6 +12,7 @@ using Game.UI;
 using System;
 using System.Reflection;
 using Unity.Entities;
+using Unity.Mathematics;
 
 namespace TopoToggle.Systems
 {
@@ -22,6 +23,7 @@ namespace TopoToggle.Systems
     {
         private ValueBinding<bool> m_ForceContourLines;
         private ValueBinding<bool> m_HideTopoTogglePanel;
+        private ValueBinding<float2> m_PanelPosition;
         private bool m_FoundPlater;
         private ComponentType m_PlatterComponent;
         private ToolSystem m_ToolSystem;
@@ -61,9 +63,11 @@ namespace TopoToggle.Systems
             // These establish bindings of values to send to the UI.
             AddBinding(m_ForceContourLines = new ValueBinding<bool>(Mod.ID, "ForceContourLines", Mod.settings.ForceContourLines));
             AddBinding(m_HideTopoTogglePanel = new ValueBinding<bool>(Mod.ID, "HideTopoTogglePanel", Mod.settings.HidePanel));
+            AddBinding(m_PanelPosition = new ValueBinding<float2>(Mod.ID, "PanelPosition", Mod.settings.GamePanelPosition));
 
             // These establish bindings to listen to from the UI.
             AddBinding(new TriggerBinding(Mod.ID, "ToggleContourLines", ToggleContourLines));
+            AddBinding(new TriggerBinding<float2>(Mod.ID, "SetPanelPosition", SetPanelPosition));
 
             Mod.log.Info($"{nameof(TopoToggleUISystem)}.{nameof(OnCreate)}");
         }
@@ -72,8 +76,17 @@ namespace TopoToggle.Systems
         {
             base.OnGameLoadingComplete(purpose, mode);
 
-            // Platter detection for compatibility.
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            if (m_ToolSystem.actionMode.IsGame())
+            {
+                m_PanelPosition.Update(Mod.settings.GamePanelPosition);
+            }
+            else if (m_ToolSystem.actionMode.IsEditor())
+            {
+                m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
+            }
+
+                // Platter detection for compatibility.
+                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             foreach (Assembly assembly in assemblies)
             {
@@ -130,6 +143,21 @@ namespace TopoToggle.Systems
             }
 
             return false;
+        }
+
+        private void SetPanelPosition(float2 position)
+        {
+            m_PanelPosition.Update(position);
+            if (m_ToolSystem.actionMode.IsGame())
+            {
+                Mod.settings.GamePanelPosition = position;
+                Mod.settings.ApplyAndSave();
+            }
+            else if (m_ToolSystem.actionMode.IsEditor())
+            {
+                Mod.settings.EditorPanelPosition = position;
+                Mod.settings.ApplyAndSave();
+            }
         }
     }
 }
