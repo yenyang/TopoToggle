@@ -1,3 +1,8 @@
 <Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="Stable" />
+  </Configurations>
   <Project Path="TopoToggle/TopoToggle.csproj" />
 </Solution>
