@@ -8,7 +8,7 @@ I am looking for volunteers to help translate the mod into the official language
 
 ## Full Description
 Adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
-First run in the game and editor, the panel starts in top left corner. Move it to where you want and click the toggle. The panel position is saved whenever you click the button, and the editor and game panel positions are saved seperately.
+First run in the game and editor, the panel starts in top left corner. Move it to where you want, the panel position will be saved and the editor and game panel positions are saved seperately.
 
 Hides vanilla contour line toggle for vanilla tools that normally support toggling contour lines.
 
@@ -25,3 +25,4 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
 * yenyang - Mod Author
 * Luca, Honu: Cooperative Development, Project Discussion and Code Sharing.
 * Konsi, Kryzchu: Code Sharing
+* DX: Testing and Feedback

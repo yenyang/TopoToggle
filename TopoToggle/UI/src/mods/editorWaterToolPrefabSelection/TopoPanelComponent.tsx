@@ -46,7 +46,17 @@ export const TopoPanelComponent = () => {
                     draggable
                     className={ (isPhotoMode || HideTopoTogglePanel)? classNames(styles.panel, styles.hidden) : styles.panel}
                     header={"TOPO"} // This is intentionally not translatable.   
-                    // Setting initial position here doesn't match up with the panel position that is saved. so use default and override it using JS above.              
+                    // Setting initial position here doesn't match up with the panel position that is saved. so use default and override it using JS above.  
+                    onMouseUp=
+                    {() => 
+                        {
+                            let panel = document.getElementById('TopoTogglePanel');
+                            if (panel) 
+                            {
+                                trigger(mod.id, "SetPanelPosition", { x: (panel.offsetLeft) , y: (panel.offsetTop) });
+                            }
+                        }   
+                    }         
                     >
                     <div className={styles.panelSection}>
                         <VanillaComponentResolver.instance.ToolButton
@@ -56,11 +66,6 @@ export const TopoPanelComponent = () => {
                             onSelect={() => 
                             { 
                                 trigger(mod.id, "ToggleContourLines");
-                                let panel = document.getElementById('TopoTogglePanel');
-                                if (panel) 
-                                {
-                                    trigger(mod.id, "SetPanelPosition", { x: (panel.offsetLeft) , y: (panel.offsetTop) });
-                                }
                             }} 
                             src={ContourLinesSrc}
                             focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}>                          
