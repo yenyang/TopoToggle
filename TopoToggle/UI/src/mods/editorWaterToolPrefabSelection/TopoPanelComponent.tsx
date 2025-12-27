@@ -4,7 +4,7 @@ import { Panel, Portal } from "cs2/ui";
 import { VanillaComponentResolver } from "mods/VanillaComponentResolver/VanillaComponentResolver";
 import mod from "../../../mod.json";
 import { useLocalization } from "cs2/l10n";
-import { game, Number2 } from "cs2/bindings";
+import { game } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
@@ -18,24 +18,8 @@ export const TopoPanelComponent = () => {
     const isPhotoMode = useValue(game.activeGamePanel$)?.__Type == game.GamePanelType.PhotoMode;
     const HideTopoTogglePanel = useValue(HideTopoTogglePanel$);
     const PanelPosition = useValue(PanelPosition$);
-
-    
-    // translation handling. Translates using locale keys that are defined in C# or fallback string here.
-    
+    // translation handling. Translates using locale keys that are defined in C# or fallback string here.    
     const { translate } = useLocalization();
-
-
-    console.log("window.innerWidth " + window.innerWidth);  
-    console.log("window.innerHeight " + window.innerHeight); 
-    
-    let icon = document.getElementById('TopoTogglePanel');
-    if (icon) 
-    {
-        
-        let iconRight = (icon.offsetLeft + icon.offsetWidth) / window.innerWidth;
-        console.log("icon.offsetLeft " + icon.offsetLeft);
-        console.log("icon.offsetWidth " + icon.offsetWidth);
-    }
          
     // This either returns an empty JSX component or a small panel with TOPO title and a button to toggle contour lines.
     return (
@@ -57,14 +41,13 @@ export const TopoPanelComponent = () => {
                                 onSelect={() => 
                                 { 
                                     trigger(mod.id, "ToggleContourLines");
-
+                                    
+                                    // Not an ideal solution.
                                     let icon = document.getElementById('TopoTogglePanel');
                                     if (icon) 
                                     {
-                                        console.log("icon.offsetLeft " + icon.offsetLeft);
-                                        console.log("icon.offsetWidth " + icon.offsetWidth);
-
-
+                                        // The additionals are manually calculated.
+                                        // Initial Position is sometimes overriden by game.
                                         trigger(mod.id, "SetPanelPosition", { x: (icon.offsetLeft) / window.innerWidth + .004, y: (icon.offsetTop) / window.innerHeight + .049});
                                     }
 

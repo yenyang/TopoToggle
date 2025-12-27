@@ -29,7 +29,7 @@ namespace TopoToggle
         /// <summary>
         /// Action name for contour toggle.
         /// </summary>
-        public const string kButtonActionName = "ButtonBinding";
+        public const string kContourKeyboardToggleActionName = "ToggleContourLines";
 
         /// <summary>
         ///  Log file for the whole mod.
@@ -73,7 +73,7 @@ namespace TopoToggle
 
             settings.RegisterKeyBindings();
 
-            m_ButtonAction = settings.GetAction(kButtonActionName);
+            m_ButtonAction = settings.GetAction(kContourKeyboardToggleActionName);
 
             m_ButtonAction.shouldBeEnabled = true;
 

@@ -3,9 +3,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 
+//#define LOG_VANILLA_KEYBINDS
+
 using Colossal.Serialization.Entities;
 using Colossal.UI.Binding;
 using Game;
+using Game.Input;
 using Game.Prefabs;
 using Game.Tools;
 using Game.UI;
@@ -13,6 +16,10 @@ using System;
 using System.Reflection;
 using Unity.Entities;
 using Unity.Mathematics;
+# if  LOG_VANILLA_KEYBINDS
+using Game.Input;
+using System.Collections.Generic;
+#endif
 
 namespace TopoToggle.Systems
 {
@@ -29,6 +36,7 @@ namespace TopoToggle.Systems
         private ToolSystem m_ToolSystem;
         private PrefabSystem m_PrefabSystem;
         private ObjectToolSystem m_ObjectToolSystem;
+        private ProxyAction m_ToggleContourKeybind;
 
         /// <summary>
         /// Gets the value of the force contour lines binding.
@@ -69,6 +77,10 @@ namespace TopoToggle.Systems
             AddBinding(new TriggerBinding(Mod.ID, "ToggleContourLines", ToggleContourLines));
             AddBinding(new TriggerBinding<float2>(Mod.ID, "SetPanelPosition", SetPanelPosition));
 
+            m_ToggleContourKeybind = Mod.settings.GetAction(Mod.kContourKeyboardToggleActionName);
+
+            m_ToggleContourKeybind.onInteraction += (_,_) => ToggleContourLines() ;
+
             Mod.log.Info($"{nameof(TopoToggleUISystem)}.{nameof(OnCreate)}");
         }
 
@@ -76,14 +88,53 @@ namespace TopoToggle.Systems
         {
             base.OnGameLoadingComplete(purpose, mode);
 
-            if (m_ToolSystem.actionMode.IsGame())
+# if DEBUG && LOG_VANILLA_KEYBINDS
+            Mod.log.Debug("Shortcuts Action Map:");
+            ProxyActionMap shortcutsMap = InputManager.instance.FindActionMap(InputManager.kShortcutsMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in shortcutsMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("Tool Action Map:");
+            ProxyActionMap toolMap = InputManager.instance.FindActionMap(InputManager.kToolMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in toolMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kEngagementMap Action Map:");
+            ProxyActionMap kEngagementMap = InputManager.instance.FindActionMap(InputManager.kEngagementMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kMenuMap Action Map:");
+            ProxyActionMap kMenuMap = InputManager.instance.FindActionMap(InputManager.kMenuMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kNavigationMap Action Map:");
+            ProxyActionMap kNavigationMap = InputManager.instance.FindActionMap(InputManager.kNavigationMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+#endif
+
+            if (mode.IsGame())
             {
                 m_PanelPosition.Update(Mod.settings.GamePanelPosition);
             }
-            else if (m_ToolSystem.actionMode.IsEditor())
+            else if (mode.IsEditor())
             {
                 m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
             }
+
+            m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
 
                 // Platter detection for compatibility.
                 Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -108,7 +159,7 @@ namespace TopoToggle.Systems
         }
 
         private void OnToolChanged(ToolBaseSystem toolSystem)
-        {
+        {  
             if (Mod.settings.HidePanel ||
                 IsPlatterPrefabActive())
             {
