@@ -18,6 +18,7 @@ export const TopoPanelComponent = () => {
     const isPhotoMode = useValue(game.activeGamePanel$)?.__Type == game.GamePanelType.PhotoMode;
     const HideTopoTogglePanel = useValue(HideTopoTogglePanel$);
     const PanelPosition = useValue(PanelPosition$);
+
     // translation handling. Translates using locale keys that are defined in C# or fallback string here.    
     const { translate } = useLocalization();
          

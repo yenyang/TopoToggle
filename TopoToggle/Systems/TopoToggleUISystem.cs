@@ -55,6 +55,11 @@ namespace TopoToggle.Systems
             return IsPlatterPrefab(m_ToolSystem.activePrefab);
         }
 
+        public void UpdatePanelVisibility(bool hidePanel)
+        {
+            m_HideTopoTogglePanel.Update(hidePanel);
+        }
+
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -82,6 +87,12 @@ namespace TopoToggle.Systems
             m_ToggleContourKeybind.onInteraction += (_,_) => ToggleContourLines() ;
 
             Mod.log.Info($"{nameof(TopoToggleUISystem)}.{nameof(OnCreate)}");
+        }
+
+        protected override void OnGamePreload(Purpose purpose, GameMode mode)
+        {
+            base.OnGamePreload(purpose, mode);
+            m_HideTopoTogglePanel.Update(true);
         }
 
         protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
@@ -135,9 +146,10 @@ namespace TopoToggle.Systems
             }
 
             m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
+            m_HideTopoTogglePanel.Update(!mode.IsGameOrEditor() || Mod.settings.HidePanel);
 
-                // Platter detection for compatibility.
-                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            // Platter detection for compatibility.
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             foreach (Assembly assembly in assemblies)
             {

@@ -11,6 +11,8 @@ using Game.Modding;
 using Game.Settings;
 using Game.UI;
 using Game.UI.Widgets;
+using TopoToggle.Systems;
+using Unity.Entities;
 using Unity.Mathematics;
 
 namespace TopoToggle.Settings
@@ -33,6 +35,7 @@ namespace TopoToggle.Settings
         [SettingsUIHidden]
         public float2 EditorPanelPosition { get; set; }
 
+        [SettingsUISetter(typeof(Setting), nameof(HidePanelToggled))]
         public bool HidePanel { get; set; }
 
         [SettingsUIKeyboardBinding(actionName: Mod.kContourKeyboardToggleActionName)]
@@ -44,30 +47,10 @@ namespace TopoToggle.Settings
         {
             throw new System.NotImplementedException();
         }
-
-    }
-
-    public class LocaleEN : IDictionarySource
-    {
-        private readonly Setting m_Setting;
-        public LocaleEN(Setting setting)
+        public void HidePanelToggled(bool value)
         {
-            m_Setting = setting;
-        }
-        public IEnumerable<KeyValuePair<string, string>> ReadEntries(IList<IDictionaryEntryError> errors, Dictionary<string, int> indexCounts)
-        {
-            return new Dictionary<string, string>
-            {
-                { m_Setting.GetSettingsLocaleID(), "Topo Toggle" },
-
-                { m_Setting.GetOptionLabelLocaleID(nameof(Setting.HidePanel)), "Hide Topo Toggle Panel" },
-                { m_Setting.GetOptionDescLocaleID(nameof(Setting.HidePanel)), "Hides the panel if you only want to use the keybind." },
-            };
-        }
-
-        public void Unload()
-        {
-
+            TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
+            uiSystem.UpdatePanelVisibility(value);
         }
     }
 }
