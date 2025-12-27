@@ -1,6 +1,4 @@
 .panel {
-    position: absolute;
-    align-items: center;     
     width: 60rem;
 }
 
@@ -13,17 +11,7 @@
     height: 35rem;
 }
 
-.row {
-    padding: 10rem 20rem;
-}
-
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.inactive {
-    width: 0rem;
-    height: 0rem;
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
 }
