@@ -8,7 +8,7 @@ I am looking for volunteers to help translate the mod into the official language
 
 ## Full Description
 Adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
-The panel position is saved whenever you click the button, and the editor and game panel positions are saved seperately.
+First run in the game and editor, the panel starts in top left corner. Move it to where you want and click the toggle. The panel position is saved whenever you click the button, and the editor and game panel positions are saved seperately.
 
 Hides vanilla contour line toggle for vanilla tools that normally support toggling contour lines.
 
