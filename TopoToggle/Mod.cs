@@ -37,23 +37,30 @@ namespace TopoToggle
         public static ILog log = LogManager.GetLogger($"{nameof(TopoToggle)}.{nameof(Mod)}").SetShowsErrorsInUI(false);
 
         public static Setting settings;
-        
-        /// <summary>
-        /// Keybinding Action for toggling contour lines.
-        /// </summary>
-        public static ProxyAction m_ButtonAction;
 
+        /// <summary>
+        /// Gets the static reference to the mod instance.
+        /// </summary>
+        public static Mod Instance
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the version of the mod.
         /// </summary>
+#if STABLE
+        internal string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+#else
         internal string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString(4);
-
+#endif
 
 
         public void OnLoad(UpdateSystem updateSystem)
         {
             log.Info(nameof(OnLoad));
+            Instance = this;
 
             if (GameManager.instance.modManager.TryGetExecutableAsset(this, out var asset))
                 log.Info($"Current mod asset at {asset.path}");
@@ -72,12 +79,6 @@ namespace TopoToggle
             GameManager.instance.localizationManager.AddSource("en-US", new LocaleEN(settings));
 
             settings.RegisterKeyBindings();
-
-            m_ButtonAction = settings.GetAction(kContourKeyboardToggleActionName);
-
-            m_ButtonAction.shouldBeEnabled = true;
-
-            m_ButtonAction.onInteraction += (_, phase) => log.Info($"[{m_ButtonAction.name}] On{phase} {m_ButtonAction.ReadValue<float>()}");
 
             AssetDatabase.global.LoadSettings(nameof(TopoToggle), settings, new Setting(this));
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Finished settings.");

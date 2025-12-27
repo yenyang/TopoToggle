@@ -47,6 +47,14 @@ export const TopoPanelComponent = () => {
                                     let icon = document.getElementById('TopoTogglePanel');
                                     if (icon) 
                                     {
+                                        console.log("icon.offsetLeft" + icon.offsetLeft);
+                                        console.log("icon.offsetTop" + icon.offsetTop);
+                                        console.log("icon.offsetWidth" + icon.offsetWidth);
+                                        console.log("icon.offsetHeight" + icon.offsetHeight);                                        
+                                        console.log("icon.parentElement?.offsetLeft" + icon.parentElement?.offsetLeft);                                                 
+                                        console.log("icon.parentElement?.offsetTop" + icon.parentElement?.offsetTop);                                                 
+                                        console.log("icon.parentElement?.offsetWidth" + icon.parentElement?.offsetWidth);                                                 
+                                        console.log("icon.parentElement?.offsetHeight" + icon.parentElement?.offsetHeight);
                                         // The additionals are manually calculated.
                                         // Initial Position is sometimes overriden by game.
                                         trigger(mod.id, "SetPanelPosition", { x: (icon.offsetLeft) / window.innerWidth + .004, y: (icon.offsetTop) / window.innerHeight + .049});

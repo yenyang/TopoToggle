@@ -22,6 +22,9 @@ namespace TopoToggle.Settings
 
                 { m_Setting.GetOptionLabelLocaleID(nameof(Setting.HidePanel)), "Hide Topo Toggle Panel" },
                 { m_Setting.GetOptionDescLocaleID(nameof(Setting.HidePanel)), "Hides the panel if you only want to use the keybind." },
+
+                { m_Setting.GetOptionLabelLocaleID(nameof(Setting.Version)), "Version" },
+                { m_Setting.GetOptionDescLocaleID(nameof(Setting.Version)), $"Version number for the Topo Toggle mod installed."  },
             };
         }
 
