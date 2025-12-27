@@ -3,9 +3,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 
+//#define LOG_VANILLA_KEYBINDS
+
 using Colossal.Serialization.Entities;
 using Colossal.UI.Binding;
 using Game;
+using Game.Input;
 using Game.Prefabs;
 using Game.Tools;
 using Game.UI;
@@ -13,6 +16,10 @@ using System;
 using System.Reflection;
 using Unity.Entities;
 using Unity.Mathematics;
+# if  LOG_VANILLA_KEYBINDS
+using Game.Input;
+using System.Collections.Generic;
+#endif
 
 namespace TopoToggle.Systems
 {
@@ -24,11 +31,14 @@ namespace TopoToggle.Systems
         private ValueBinding<bool> m_ForceContourLines;
         private ValueBinding<bool> m_HideTopoTogglePanel;
         private ValueBinding<float2> m_PanelPosition;
+        private ValueBinding<bool> m_RecheckPanelPosition;
         private bool m_FoundPlater;
         private ComponentType m_PlatterComponent;
         private ToolSystem m_ToolSystem;
         private PrefabSystem m_PrefabSystem;
         private ObjectToolSystem m_ObjectToolSystem;
+        private ProxyAction m_ToggleContourKeybind;
+        private int m_FrameTimer = 0;
 
         /// <summary>
         /// Gets the value of the force contour lines binding.
@@ -45,6 +55,85 @@ namespace TopoToggle.Systems
         public bool IsPlatterPrefabActive()
         {
             return IsPlatterPrefab(m_ToolSystem.activePrefab);
+        }
+
+        public void UpdatePanelVisibility(bool hidePanel)
+        {
+            m_HideTopoTogglePanel.Update(hidePanel);
+        }
+
+
+
+        protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
+        {
+            base.OnGameLoadingComplete(purpose, mode);
+
+# if DEBUG && LOG_VANILLA_KEYBINDS
+            Mod.log.Debug("Shortcuts Action Map:");
+            ProxyActionMap shortcutsMap = InputManager.instance.FindActionMap(InputManager.kShortcutsMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in shortcutsMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("Tool Action Map:");
+            ProxyActionMap toolMap = InputManager.instance.FindActionMap(InputManager.kToolMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in toolMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kEngagementMap Action Map:");
+            ProxyActionMap kEngagementMap = InputManager.instance.FindActionMap(InputManager.kEngagementMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kMenuMap Action Map:");
+            ProxyActionMap kMenuMap = InputManager.instance.FindActionMap(InputManager.kMenuMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+
+            Mod.log.Debug("kNavigationMap Action Map:");
+            ProxyActionMap kNavigationMap = InputManager.instance.FindActionMap(InputManager.kNavigationMap);
+            foreach (KeyValuePair<string, ProxyAction> keyValue in kEngagementMap.actions)
+            {
+                Mod.log.Debug(keyValue.Key);
+            }
+#endif
+
+            if (mode.IsGame())
+            {
+                m_PanelPosition.Update(Mod.settings.GamePanelPosition);
+                m_PanelPosition.TriggerUpdate();
+            }
+            else if (mode.IsEditor())
+            {
+                m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
+                m_PanelPosition.TriggerUpdate();
+            }
+
+            m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
+            m_HideTopoTogglePanel.Update(true);
+            m_FrameTimer = 30;
+            Enabled = true;
+
+            // Platter detection for compatibility.
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            foreach (Assembly assembly in assemblies)
+            {
+                Type type = assembly.GetType("Platter.Components.ParcelPlaceholderData");
+                if (type != null)
+                {
+                    Mod.log.Info($"Found {type.FullName} in {type.Assembly.FullName}. ");
+                    m_PlatterComponent = ComponentType.ReadOnly(type);
+                    m_FoundPlater = true;
+                }
+            }
         }
 
         protected override void OnCreate()
@@ -64,39 +153,44 @@ namespace TopoToggle.Systems
             AddBinding(m_ForceContourLines = new ValueBinding<bool>(Mod.ID, "ForceContourLines", Mod.settings.ForceContourLines));
             AddBinding(m_HideTopoTogglePanel = new ValueBinding<bool>(Mod.ID, "HideTopoTogglePanel", Mod.settings.HidePanel));
             AddBinding(m_PanelPosition = new ValueBinding<float2>(Mod.ID, "PanelPosition", Mod.settings.GamePanelPosition));
+            AddBinding(m_RecheckPanelPosition = new ValueBinding<bool>(Mod.ID, "RecheckPanelPosition", false));
 
             // These establish bindings to listen to from the UI.
             AddBinding(new TriggerBinding(Mod.ID, "ToggleContourLines", ToggleContourLines));
             AddBinding(new TriggerBinding<float2>(Mod.ID, "SetPanelPosition", SetPanelPosition));
+            AddBinding(new TriggerBinding(Mod.ID, "CheckPanelPosition", () => 
+            {
+                Enabled = true;
+                m_FrameTimer = 30;
+            }));
+
+            m_ToggleContourKeybind = Mod.settings.GetAction(Mod.kContourKeyboardToggleActionName);
+
+            m_ToggleContourKeybind.onInteraction += (_,_) => ToggleContourLines();
 
             Mod.log.Info($"{nameof(TopoToggleUISystem)}.{nameof(OnCreate)}");
+            Enabled = false;
         }
 
-        protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
+        /// <summary>
+        /// This is janky and I don't like it. I have strugged for awhile to figure out how to save and use panel position consistenly and this is the best I came up with.
+        /// </summary>
+        protected override void OnUpdate()
         {
-            base.OnGameLoadingComplete(purpose, mode);
+            m_RecheckPanelPosition.Update(!m_RecheckPanelPosition.value);
+            m_FrameTimer -= 1;
 
-            if (m_ToolSystem.actionMode.IsGame())
+            if (m_FrameTimer <= 0)
             {
-                m_PanelPosition.Update(Mod.settings.GamePanelPosition);
-            }
-            else if (m_ToolSystem.actionMode.IsEditor())
-            {
-                m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
-            }
-
-                // Platter detection for compatibility.
-                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-            foreach (Assembly assembly in assemblies)
-            {
-                Type type = assembly.GetType("Platter.Components.ParcelPlaceholderData");
-                if (type != null)
+                if (Mod.settings.HidePanel ||
+                IsPlatterPrefabActive())
                 {
-                    Mod.log.Info($"Found {type.FullName} in {type.Assembly.FullName}. ");
-                    m_PlatterComponent = ComponentType.ReadOnly(type);
-                    m_FoundPlater = true;
+                    m_HideTopoTogglePanel.Update(true);
                 }
+                m_HideTopoTogglePanel.Update(false);
+
+                m_FrameTimer = 0;
+                Enabled = false;
             }
         }
 
@@ -108,7 +202,7 @@ namespace TopoToggle.Systems
         }
 
         private void OnToolChanged(ToolBaseSystem toolSystem)
-        {
+        {  
             if (Mod.settings.HidePanel ||
                 IsPlatterPrefabActive())
             {

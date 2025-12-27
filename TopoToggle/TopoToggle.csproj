@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Configurations>Debug;Release</Configurations>
+		<Configurations>Debug;Release;Stable</Configurations>
 		<LangVersion>9</LangVersion>
 		<!--The file where mod information which is required for publishing mod on PDX mods are stored-->
-		<PublishConfigurationPath>Properties\PublishConfiguration.xml</PublishConfigurationPath>
-		<AssemblyVersion>0.0.0.1</AssemblyVersion>
+		<PublishConfigurationPath>Properties\$(Configuration)\PublishConfiguration.xml</PublishConfigurationPath>
+		<AssemblyVersion>0.9.0.0</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
@@ -74,6 +74,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Properties\Stable\" />
+	  <Folder Include="Properties\Release\" />
 	  <Folder Include="UI\" />
 	</ItemGroup>
 

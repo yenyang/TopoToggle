@@ -10,7 +10,7 @@ const register: ModRegistrar = (moduleRegistry) => {
      // console.log('mr', moduleRegistry);
 
      moduleRegistry.append('Game', TopoPanelComponent);
-     moduleRegistry.append('Editor', TopoPanelComponent);
+     moduleRegistry.append('Editor', TopoPanelComponent);     
 
      // This is just to verify using UI console that all the component registriations was completed.
      console.log(mod.id + " UI module registrations completed.");
