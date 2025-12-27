@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/TopoToggle/Properties/Affinity/20251226204902_1.af
+/TopoToggle/Properties/Affinity/20251226204921_1.af
+/TopoToggle/Properties/Affinity/20251226205002_1.af
+/TopoToggle/Properties/Affinity/20251226205604_1.af
+/TopoToggle/Properties/Affinity/Thumbnail.af
+/TopoToggle/Properties/Affinity/ThumbnailBeta.af
