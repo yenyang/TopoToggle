@@ -23,7 +23,7 @@ namespace TopoToggle.Systems
             get
             {
                 if (m_RaycastTerrain is not null &&
-                    Mod.settings.ShowTerrainHitPosition &&
+                    Mod.settings.ShowTerrainElevation &&
                     (m_ToolRaycastSystem.raycastFlags & (RaycastFlags.DebugDisable | RaycastFlags.UIDisable)) == 0)
                 {
                     return m_RaycastTerrain.HitPosition;
@@ -46,7 +46,7 @@ namespace TopoToggle.Systems
 
         protected override void OnUpdate()
         {
-            if (Mod.settings.ShowTerrainHitPosition &&
+            if (Mod.settings.ShowTerrainElevation &&
                 (m_ToolRaycastSystem.raycastFlags & (RaycastFlags.DebugDisable | RaycastFlags.UIDisable)) == 0)
             {
                 m_RaycastTerrain = new RaycastTerrain(World);
