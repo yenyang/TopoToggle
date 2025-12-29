@@ -1,4 +1,2 @@
-﻿# Patch v0.9.1.0
-* Fixed not showing any tool options while using the vanilla water tool in the editor.
-* Added option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.
-* Title area increased in height a little to allow room for coordinates.
+﻿# Patch v0.9.1.1
+* Changed new option from cursor coordinates to just Elevation relative to sea level.
