@@ -56,7 +56,8 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
   <ChangeLog># Patch v0.9.1.0
 * Fixed not showing any tool options while using the vanilla water tool in the editor.
-* Added option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.</ChangeLog>
+* Added option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.
+* Title area increased in height a little to allow room for coordinates.</ChangeLog>
   <!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
   <ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
   <ExternalLink Type="paypal" Url="https://www.paypal.com/paypalme/YenyangsMods" />
