@@ -23,6 +23,7 @@
     justify-content: left;    
     text-align: left;
     width: 56rem;
+    height: 30rem;
 }
 
 .smallSize 
@@ -31,4 +32,13 @@
     width: 56rem;
     text-align: left;
     text-overflow: clip;
+}
+
+.absolutePosition
+{
+    position: absolute;
+    width: 60rem;
+    height: 30rem;
+    left: 0rem;
+    top: 12rem;
 }

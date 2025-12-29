@@ -36,9 +36,7 @@ export const TopoPanelComponent = () => {
     {
         panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");
     }
-    else if (!panel || 
-            (Math.abs(panel.offsetLeft - PanelPosition.x ) > 10 ||
-             Math.abs(panel.offsetTop - PanelPosition.y) > 10))
+    else if (!panel)
     {
         trigger(mod.id, "CheckPanelPosition");
     }
@@ -51,12 +49,15 @@ export const TopoPanelComponent = () => {
                     id = "TopoTogglePanel"    
                     draggable
                     className={ (isPhotoMode || HideTopoTogglePanel)? classNames(styles.panel, styles.hidden) : styles.panel}
-                    header={ShowTerrainHitPosition? 
-                        <div className={styles.columnGroup}>
-                            <div className={styles.smallSize}>{"x: " +TerrainHitPosition.x.toFixed(2)}</div>
-                            <div className={styles.smallSize}>{"y: " +TerrainHitPosition.y.toFixed(2)}</div>
-                            <div className={styles.smallSize}>{"z: " +TerrainHitPosition.z.toFixed(2)}</div>
-                        </div> : "TOPO"} // This is intentionally not translatable.   
+                    header={
+                            <>
+                                <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>
+                                    <div className={styles.smallSize}>{"x: " +TerrainHitPosition.x.toFixed(2)}</div>
+                                    <div className={styles.smallSize}>{"y: " +TerrainHitPosition.y.toFixed(2)}</div>
+                                    <div className={styles.smallSize}>{"z: " +TerrainHitPosition.z.toFixed(2)}</div>
+                                </div>
+                                <div className={ ShowTerrainHitPosition? classNames(styles.hidden, styles.absolutePosition) : styles.absolutePosition}>TOPO</div>
+                            </>} // This is intentionally not translatable.   
                     // Setting initial position here doesn't match up with the panel position that is saved. so use default and override it using JS above.  
                     onMouseUp=
                     {() => 
