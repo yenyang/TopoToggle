@@ -36,7 +36,9 @@ export const TopoPanelComponent = () => {
     {
         panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");
     }
-    else if (!panel)
+    else if (!panel || 
+            (Math.abs(panel.offsetLeft - PanelPosition.x ) > 10 ||
+             Math.abs(panel.offsetTop - PanelPosition.y) > 10))
     {
         trigger(mod.id, "CheckPanelPosition");
     }

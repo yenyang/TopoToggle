@@ -55,6 +55,7 @@ namespace TopoToggle.Settings
 
         [SettingsUISection(General, General)]
         [SettingsUISetter(typeof(Setting), nameof(ShowTerrainHitPositionToggled))]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(HidePanel))]
         public bool ShowTerrainHitPosition { get; set; }
 
         /// <summary>

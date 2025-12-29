@@ -87,9 +87,9 @@ namespace TopoToggle.Systems
         /// <param name="showTerrainHitPosition">True to show hit position. false to show TOPO title.</param>
         public void UpdateShowTerrainHitPosition(bool showTerrainHitPosition)
         {
-            m_ShowTerrainHitPosition.Update(showTerrainHitPosition);
             m_HideTimer = 30;
-            Enabled = true;
+            m_HideTopoTogglePanel.Update(true);
+            m_ShowTerrainHitPosition.Update(showTerrainHitPosition);    
         }
 
         public override GameMode gameMode => GameMode.GameOrEditor;
@@ -149,7 +149,6 @@ namespace TopoToggle.Systems
             m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
             m_HideTopoTogglePanel.Update(true);
             m_HideTimer = 30;
-            Enabled = true;
 
             // Platter detection for compatibility.
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -193,8 +192,11 @@ namespace TopoToggle.Systems
             AddBinding(new TriggerBinding<float2>(Mod.ID, "SetPanelPosition", SetPanelPosition));
             AddBinding(new TriggerBinding(Mod.ID, "CheckPanelPosition", () => 
             {
-                Enabled = true;
-                m_HideTimer = 30;
+                if (m_HideTimer == -1)
+                {
+                    m_HideTimer = 30;
+                    m_HideTopoTogglePanel.Update(true);
+                }
             }));
 
             m_ToggleContourKeybind = Mod.settings.GetAction(Mod.kContourKeyboardToggleActionName);
@@ -227,23 +229,19 @@ namespace TopoToggle.Systems
                 }
 
                 m_HideTimer = -1;
-
-                if (!Mod.settings.ShowTerrainHitPosition)
-                {
-                    Enabled = false;
-                }
             }
 
-            if (m_HideTimer == -1)
+            if (m_HideTimer == -1 &&
+               !Mod.settings.HidePanel &&
+                Mod.settings.ShowTerrainHitPosition)
             {
-                if (Mod.settings.ShowTerrainHitPosition &&
-                    m_TerrainHitTimer <= 0)
+                if (m_TerrainHitTimer <= 0)
                 {
                     m_TerrainHitPosition.Update(m_TopoToggleRaycastSystem.TerrainHitPosition);
                     m_TerrainHitPosition.TriggerUpdate();
                     m_TerrainHitTimer = 30;
                 }
-                else if (Mod.settings.ShowTerrainHitPosition)
+                else
                 {
                     m_TerrainHitTimer -= 1;
                 }
