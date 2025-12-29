@@ -81,11 +81,6 @@ namespace TopoToggle.Settings
         public void ShowTerrainHitPositionToggled(bool value)
         {
             TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
-            if (value)
-            {
-                uiSystem.Enabled = true;
-            }
-
             uiSystem.UpdateShowTerrainHitPosition(value);
         }
     }

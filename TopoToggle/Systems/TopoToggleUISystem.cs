@@ -88,6 +88,8 @@ namespace TopoToggle.Systems
         public void UpdateShowTerrainHitPosition(bool showTerrainHitPosition)
         {
             m_ShowTerrainHitPosition.Update(showTerrainHitPosition);
+            m_HideTimer = 30;
+            Enabled = true;
         }
 
         public override GameMode gameMode => GameMode.GameOrEditor;
@@ -232,17 +234,20 @@ namespace TopoToggle.Systems
                 }
             }
 
-            if (Mod.settings.ShowTerrainHitPosition &&
-                m_TerrainHitTimer <= 0)
+            if (m_HideTimer == -1)
             {
-                m_TerrainHitPosition.Update(m_TopoToggleRaycastSystem.TerrainHitPosition);
-                m_TerrainHitPosition.TriggerUpdate();
-                m_TerrainHitTimer = 30;
+                if (Mod.settings.ShowTerrainHitPosition &&
+                    m_TerrainHitTimer <= 0)
+                {
+                    m_TerrainHitPosition.Update(m_TopoToggleRaycastSystem.TerrainHitPosition);
+                    m_TerrainHitPosition.TriggerUpdate();
+                    m_TerrainHitTimer = 30;
+                }
+                else if (Mod.settings.ShowTerrainHitPosition)
+                {
+                    m_TerrainHitTimer -= 1;
+                }
             }
-            else if (Mod.settings.ShowTerrainHitPosition)
-            {
-                m_TerrainHitTimer -= 1;
-            }                
         }
 
         private void ToggleContourLines()
