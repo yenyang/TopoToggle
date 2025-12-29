@@ -1,2 +1,3 @@
-﻿# Patch v0.9.0.1
-* Panel Position Saved on Mouse Up instead of when toggle clicked.
+﻿# Patch v0.9.1.0
+* Fixed not showing any tool options while using the vanilla water tool in the editor.
+* Added option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.

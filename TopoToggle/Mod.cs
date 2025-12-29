@@ -90,6 +90,7 @@ namespace TopoToggle
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Registering systems. . .");
 
             updateSystem.UpdateAt<TopoToggleUISystem>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateAt<TopoToggleRaycastSystem>(SystemUpdatePhase.Raycast);
 
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Finished registering systems.");
 

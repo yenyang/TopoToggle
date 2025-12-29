@@ -53,6 +53,10 @@ namespace TopoToggle.Settings
         [SettingsUISetter(typeof(Setting), nameof(HidePanelToggled))]
         public bool HidePanel { get; set; }
 
+        [SettingsUISection(General, General)]
+        [SettingsUISetter(typeof(Setting), nameof(ShowTerrainHitPositionToggled))]
+        public bool ShowTerrainHitPosition { get; set; }
+
         /// <summary>
         /// Gets a value indicating the version.
         /// </summary>
@@ -72,6 +76,17 @@ namespace TopoToggle.Settings
         {
             TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
             uiSystem.UpdatePanelVisibility(value);
+        }
+
+        public void ShowTerrainHitPositionToggled(bool value)
+        {
+            TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
+            if (value)
+            {
+                uiSystem.Enabled = true;
+            }
+
+            uiSystem.UpdateShowTerrainHitPosition(value);
         }
     }
 }
