@@ -1,0 +1,44 @@
+.panel {
+    width: 60rem;
+    text-overflow: clip;
+}
+
+.panelSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+    width: 60rem;
+    height: 35rem;
+}
+
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+.columnGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;    
+    text-align: left;
+    width: 56rem;
+    height: 30rem;
+}
+
+.smallSize 
+{
+    font-size: 10rem !important;
+    width: 56rem;
+    text-align: left;
+    text-overflow: clip;
+}
+
+.absolutePosition
+{
+    position: absolute;
+    width: 60rem;
+    height: 30rem;
+    left: 0rem;
+    top: 12rem;
+}

@@ -25,6 +25,9 @@ namespace TopoToggle.Settings
 
                 { m_Setting.GetOptionLabelLocaleID(nameof(Setting.Version)), "Version" },
                 { m_Setting.GetOptionDescLocaleID(nameof(Setting.Version)), $"Version number for the Topo Toggle mod installed."  },
+
+                { m_Setting.GetOptionLabelLocaleID(nameof(Setting.ShowTerrainHitPosition)), "Show Terrain Position of Cursor" },
+                { m_Setting.GetOptionDescLocaleID(nameof(Setting.ShowTerrainHitPosition)), $"Replace the TOPO title in the panel with the coordinate position of the cursor on the terrain surface."  },
             };
         }
 

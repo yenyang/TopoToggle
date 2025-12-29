@@ -14,6 +14,8 @@ const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
 const HideTopoTogglePanel$ = bindValue(mod.id, "HideTopoTogglePanel", false);
 const PanelPosition$ = bindValue(mod.id, "PanelPosition", {x: 250, y: 250});
 const RecheckPanelPosition$ = bindValue(mod.id, "RecheckPanelPosition", false);
+const ShowTerrainHitPosition$ = bindValue(mod.id, "ShowTerrainHitPosition", false);
+const TerrainHitPosition$ = bindValue(mod.id, "TerrainHitPosition", {x:0, y:0, z:0});
 
 export const TopoPanelComponent = () => {
     // These get the value of the bindings.
@@ -22,6 +24,8 @@ export const TopoPanelComponent = () => {
     const HideTopoTogglePanel = useValue(HideTopoTogglePanel$);
     const PanelPosition = useValue(PanelPosition$);
     const RecheckPanelPosition = useValue(RecheckPanelPosition$);
+    const ShowTerrainHitPosition = useValue(ShowTerrainHitPosition$);
+    const TerrainHitPosition = useValue(TerrainHitPosition$);
 
     // translation handling. Translates using locale keys that are defined in C# or fallback string here.    
     const { translate } = useLocalization();
@@ -45,7 +49,15 @@ export const TopoPanelComponent = () => {
                     id = "TopoTogglePanel"    
                     draggable
                     className={ (isPhotoMode || HideTopoTogglePanel)? classNames(styles.panel, styles.hidden) : styles.panel}
-                    header={"TOPO"} // This is intentionally not translatable.   
+                    header={
+                            <>
+                                <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>
+                                    <div className={styles.smallSize}>{"x: " +TerrainHitPosition.x.toFixed(2)}</div>
+                                    <div className={styles.smallSize}>{"y: " +TerrainHitPosition.y.toFixed(2)}</div>
+                                    <div className={styles.smallSize}>{"z: " +TerrainHitPosition.z.toFixed(2)}</div>
+                                </div>
+                                <div className={ ShowTerrainHitPosition? classNames(styles.hidden, styles.absolutePosition) : styles.absolutePosition}>TOPO</div>
+                            </>} // This is intentionally not translatable.   
                     // Setting initial position here doesn't match up with the panel position that is saved. so use default and override it using JS above.  
                     onMouseUp=
                     {() => 

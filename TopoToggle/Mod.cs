@@ -6,14 +6,12 @@
 using Colossal.IO.AssetDatabase;
 using Colossal.Logging;
 using Game;
-using Game.Input;
 using Game.Modding;
 using Game.SceneFlow;
 using HarmonyLib;
 using System.Reflection;
 using TopoToggle.Settings;
 using TopoToggle.Systems;
-using UnityEngine;
 
 namespace TopoToggle
 {
@@ -90,6 +88,7 @@ namespace TopoToggle
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Registering systems. . .");
 
             updateSystem.UpdateAt<TopoToggleUISystem>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateAt<TopoToggleRaycastSystem>(SystemUpdatePhase.Raycast);
 
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Finished registering systems.");
 

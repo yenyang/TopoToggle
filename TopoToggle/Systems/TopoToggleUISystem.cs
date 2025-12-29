@@ -8,12 +8,14 @@
 using Colossal.Serialization.Entities;
 using Colossal.UI.Binding;
 using Game;
+using Game.Common;
 using Game.Input;
 using Game.Prefabs;
 using Game.Tools;
 using Game.UI;
 using System;
 using System.Reflection;
+using TopoToggle.Raycast;
 using Unity.Entities;
 using Unity.Mathematics;
 # if  LOG_VANILLA_KEYBINDS
@@ -32,13 +34,17 @@ namespace TopoToggle.Systems
         private ValueBinding<bool> m_HideTopoTogglePanel;
         private ValueBinding<float2> m_PanelPosition;
         private ValueBinding<bool> m_RecheckPanelPosition;
+        private ValueBinding<float3> m_TerrainHitPosition;
+        private ValueBinding<bool> m_ShowTerrainHitPosition;
         private bool m_FoundPlater;
         private ComponentType m_PlatterComponent;
         private ToolSystem m_ToolSystem;
         private PrefabSystem m_PrefabSystem;
         private ObjectToolSystem m_ObjectToolSystem;
         private ProxyAction m_ToggleContourKeybind;
-        private int m_FrameTimer = 0;
+        private TopoToggleRaycastSystem m_TopoToggleRaycastSystem;
+        private int m_HideTimer = 0;
+        private int m_TerrainHitTimer = 30;
 
         /// <summary>
         /// Gets the value of the force contour lines binding.
@@ -46,6 +52,15 @@ namespace TopoToggle.Systems
         public bool ForceContourLines
         {
             get { return m_ForceContourLines.value; }
+        }
+
+        public float3 TerrainHitPosition
+        {
+            set 
+            { 
+                m_TerrainHitPosition.Update(value);
+                m_TerrainHitPosition.TriggerUpdate();
+            }
         }
 
         /// <summary>
@@ -57,12 +72,27 @@ namespace TopoToggle.Systems
             return IsPlatterPrefab(m_ToolSystem.activePrefab);
         }
 
+        /// <summary>
+        /// Updates the panel visibility. Usually from settings toggle.
+        /// </summary>
+        /// <param name="hidePanel">True to hide panel, false to generally show panel.</param>
         public void UpdatePanelVisibility(bool hidePanel)
         {
             m_HideTopoTogglePanel.Update(hidePanel);
         }
 
+        /// <summary>
+        /// Updates the show terrain hit position binding. Usually from settings toggle.
+        /// </summary>
+        /// <param name="showTerrainHitPosition">True to show hit position. false to show TOPO title.</param>
+        public void UpdateShowTerrainHitPosition(bool showTerrainHitPosition)
+        {
+            m_HideTimer = 30;
+            m_HideTopoTogglePanel.Update(true);
+            m_ShowTerrainHitPosition.Update(showTerrainHitPosition);    
+        }
 
+        public override GameMode gameMode => GameMode.GameOrEditor;
 
         protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
         {
@@ -118,8 +148,7 @@ namespace TopoToggle.Systems
 
             m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
             m_HideTopoTogglePanel.Update(true);
-            m_FrameTimer = 30;
-            Enabled = true;
+            m_HideTimer = 30;
 
             // Platter detection for compatibility.
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -144,6 +173,7 @@ namespace TopoToggle.Systems
             m_ToolSystem = World.GetOrCreateSystemManaged<ToolSystem>();
             m_PrefabSystem = World.GetOrCreateSystemManaged<PrefabSystem>();
             m_ObjectToolSystem = World.GetOrCreateSystemManaged<ObjectToolSystem>();
+            m_TopoToggleRaycastSystem = World.GetOrCreateSystemManaged<TopoToggleRaycastSystem>();
 
             // Event registration
             m_ToolSystem.EventToolChanged += OnToolChanged;
@@ -154,14 +184,19 @@ namespace TopoToggle.Systems
             AddBinding(m_HideTopoTogglePanel = new ValueBinding<bool>(Mod.ID, "HideTopoTogglePanel", Mod.settings.HidePanel));
             AddBinding(m_PanelPosition = new ValueBinding<float2>(Mod.ID, "PanelPosition", Mod.settings.GamePanelPosition));
             AddBinding(m_RecheckPanelPosition = new ValueBinding<bool>(Mod.ID, "RecheckPanelPosition", false));
+            AddBinding(m_TerrainHitPosition = new ValueBinding<float3>(Mod.ID, "TerrainHitPosition", new float3()));
+            AddBinding(m_ShowTerrainHitPosition = new ValueBinding<bool>(Mod.ID, "ShowTerrainHitPosition", Mod.settings.ShowTerrainHitPosition));
 
             // These establish bindings to listen to from the UI.
             AddBinding(new TriggerBinding(Mod.ID, "ToggleContourLines", ToggleContourLines));
             AddBinding(new TriggerBinding<float2>(Mod.ID, "SetPanelPosition", SetPanelPosition));
             AddBinding(new TriggerBinding(Mod.ID, "CheckPanelPosition", () => 
             {
-                Enabled = true;
-                m_FrameTimer = 30;
+                if (m_HideTimer == -1)
+                {
+                    m_HideTimer = 30;
+                    m_HideTopoTogglePanel.Update(true);
+                }
             }));
 
             m_ToggleContourKeybind = Mod.settings.GetAction(Mod.kContourKeyboardToggleActionName);
@@ -169,7 +204,6 @@ namespace TopoToggle.Systems
             m_ToggleContourKeybind.onInteraction += (_,_) => ToggleContourLines();
 
             Mod.log.Info($"{nameof(TopoToggleUISystem)}.{nameof(OnCreate)}");
-            Enabled = false;
         }
 
         /// <summary>
@@ -177,20 +211,40 @@ namespace TopoToggle.Systems
         /// </summary>
         protected override void OnUpdate()
         {
-            m_RecheckPanelPosition.Update(!m_RecheckPanelPosition.value);
-            m_FrameTimer -= 1;
-
-            if (m_FrameTimer <= 0)
+            if (m_HideTimer > 0)
+            {
+                m_RecheckPanelPosition.Update(!m_RecheckPanelPosition.value);
+                m_HideTimer -= 1;
+            }
+            else if (m_HideTimer == 0)
             {
                 if (Mod.settings.HidePanel ||
-                IsPlatterPrefabActive())
+                    IsPlatterPrefabActive())
                 {
                     m_HideTopoTogglePanel.Update(true);
                 }
-                m_HideTopoTogglePanel.Update(false);
+                else
+                {
+                    m_HideTopoTogglePanel.Update(false);
+                }
 
-                m_FrameTimer = 0;
-                Enabled = false;
+                m_HideTimer = -1;
+            }
+
+            if (m_HideTimer == -1 &&
+               !Mod.settings.HidePanel &&
+                Mod.settings.ShowTerrainHitPosition)
+            {
+                if (m_TerrainHitTimer <= 0)
+                {
+                    m_TerrainHitPosition.Update(m_TopoToggleRaycastSystem.TerrainHitPosition);
+                    m_TerrainHitPosition.TriggerUpdate();
+                    m_TerrainHitTimer = 30;
+                }
+                else
+                {
+                    m_TerrainHitTimer -= 1;
+                }
             }
         }
 
