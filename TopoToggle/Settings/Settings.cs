@@ -21,7 +21,7 @@ namespace TopoToggle.Settings
     [FileLocation(nameof(TopoToggle))]
     [SettingsUIKeyboardAction(Mod.kContourKeyboardToggleActionName, ActionType.Button, usages: new string[] { Usages.kMenuUsage, "TopoToggle" }, interactions: new string[] { "UIButton" })]
     [SettingsUIGroupOrder(General, About)]
-    public class Setting : ModSetting
+    public class Settings : ModSetting
     {
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace TopoToggle.Settings
         public const string About = "About";
 
 
-        public Setting(IMod mod) : base(mod)
+        public Settings(IMod mod) : base(mod)
         {
 
         }
@@ -50,12 +50,12 @@ namespace TopoToggle.Settings
         public float2 EditorPanelPosition { get; set; }
 
         [SettingsUISection(General, General)]
-        [SettingsUISetter(typeof(Setting), nameof(HidePanelToggled))]
+        [SettingsUISetter(typeof(Settings), nameof(HidePanelToggled))]
         public bool HidePanel { get; set; }
 
         [SettingsUISection(General, General)]
-        [SettingsUISetter(typeof(Setting), nameof(ShowTerrainHitPositionToggled))]
-        [SettingsUIDisableByCondition(typeof(Setting), nameof(HidePanel))]
+        [SettingsUISetter(typeof(Settings), nameof(ShowTerrainHitPositionToggled))]
+        [SettingsUIDisableByCondition(typeof(Settings), nameof(HidePanel))]
         public bool ShowTerrainElevation { get; set; }
 
         /// <summary>

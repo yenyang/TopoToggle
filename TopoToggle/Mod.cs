@@ -3,6 +3,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 
+#define EXPORT_EN_US
+
+using Colossal;
 using Colossal.IO.AssetDatabase;
 using Colossal.Logging;
 using Game;
@@ -12,6 +15,15 @@ using HarmonyLib;
 using System.Reflection;
 using TopoToggle.Settings;
 using TopoToggle.Systems;
+
+#if DEBUG && EXPORT_EN_US
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+#endif
 
 namespace TopoToggle
 {
@@ -34,7 +46,7 @@ namespace TopoToggle
         /// </summary>
         public static ILog log = LogManager.GetLogger($"{nameof(TopoToggle)}.{nameof(Mod)}").SetShowsErrorsInUI(false);
 
-        public static Setting settings;
+        public static Settings.Settings settings;
 
         /// <summary>
         /// Gets the static reference to the mod instance.
@@ -44,6 +56,13 @@ namespace TopoToggle
             get;
             private set;
         }
+
+#if DEBUG && EXPORT_EN_US
+        private static string GetThisFilePath([CallerFilePath] string path = null)
+        {
+            return path;
+        }
+#endif
 
         /// <summary>
         /// Gets the version of the mod.
@@ -71,14 +90,16 @@ namespace TopoToggle
 #else
             log.effectivenessLevel = Level.Info;
 #endif
-            settings = new Setting(this);
+            settings = new Settings.Settings(this);
             settings.RegisterInOptionsUI();
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Loading en-US localization");
             GameManager.instance.localizationManager.AddSource("en-US", new LocaleEN(settings));
-
+#if DEBUG && EXPORT_EN_US
+            GenerateLanguageFile();
+#endif
             settings.RegisterKeyBindings();
 
-            AssetDatabase.global.LoadSettings(nameof(TopoToggle), settings, new Setting(this));
+            AssetDatabase.global.LoadSettings(nameof(TopoToggle), settings, new Settings.Settings(this));
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Finished settings.");
 
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Injecting Harmony Patches. . .");
@@ -105,5 +126,26 @@ namespace TopoToggle
                 settings = null;
             }
         }
+
+#if DEBUG && EXPORT_EN_US
+        private void GenerateLanguageFile()
+        {
+            log.Info($"[{ID}] Exporting localization");
+            var localeDict = new LocaleEN(settings).ReadEntries(new List<IDictionaryEntryError>(), new Dictionary<string, int>()).ToDictionary(pair => pair.Key, pair => pair.Value);
+            var str = JsonConvert.SerializeObject(localeDict, Formatting.Indented);
+            try
+            {
+                var path = GetThisFilePath();
+                var directory = Path.GetDirectoryName(path);
+
+                var exportPath = $@"{directory}\UI\src\mods\lang\en-US.json";
+                File.WriteAllText(exportPath, str);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+            }
+        }
+#endif
     }
 }

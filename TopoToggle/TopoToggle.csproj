@@ -5,7 +5,7 @@
 		<LangVersion>9</LangVersion>
 		<!--The file where mod information which is required for publishing mod on PDX mods are stored-->
 		<PublishConfigurationPath>Properties\$(Configuration)\PublishConfiguration.xml</PublishConfigurationPath>
-		<AssemblyVersion>0.9.1.1</AssemblyVersion>
+		<AssemblyVersion>0.9.1.2</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
@@ -35,6 +35,10 @@
 		</Reference>
 		<Reference Include="Colossal.Localization">
 			<Private>false</Private>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+		  <HintPath>$(ManagedPath)\Newtonsoft.Json.dll</HintPath>
+		  <Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.InputSystem">
 			<Private>false</Private>
@@ -80,7 +84,7 @@
 	<ItemGroup>
 	  <Folder Include="Properties\Stable\" />
 	  <Folder Include="Properties\Release\" />
-	  <Folder Include="UI\" />
+	  <Folder Include="UI\src\mods\lang\" />
 	</ItemGroup>
 
 	<ItemGroup>
