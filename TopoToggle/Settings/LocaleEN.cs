@@ -28,12 +28,19 @@ namespace TopoToggle.Settings
 
                 { m_Setting.GetOptionLabelLocaleID(nameof(Settings.ShowTerrainElevation)), "Show Terrain Elevation of Cursor" },
                 { m_Setting.GetOptionDescLocaleID(nameof(Settings.ShowTerrainElevation)), $"Replace the TOPO title in the panel with the Elevation (E) relative to Sea Level of the terrain surface at the cursor."  },
+
+                { TextLabel("ElevationAbbreviation"), "E" },
             };
         }
 
         public void Unload()
         {
 
+        }
+
+        private string TextLabel(string key)
+        {
+            return $"{Mod.ID}.Text_Label_[{key}]";
         }
     }
 }

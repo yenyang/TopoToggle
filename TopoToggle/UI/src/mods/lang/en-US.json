@@ -5,5 +5,6 @@
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version number for the Topo Toggle mod installed.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Show Terrain Elevation of Cursor",
-  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Replace the TOPO title in the panel with the Elevation (E) relative to Sea Level of the terrain surface at the cursor."
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Replace the TOPO title in the panel with the Elevation (E) relative to Sea Level of the terrain surface at the cursor.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
 }
