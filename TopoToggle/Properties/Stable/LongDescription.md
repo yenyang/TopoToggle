@@ -14,7 +14,7 @@ Hides vanilla contour line toggle for vanilla tools that normally support toggli
 
 Option to hide Topo Toggle panel if you only want to use the keybind.
 
-Option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.
+Option to replace the "TOPO" title in the panel with the elevation of the cursor on the terrain surface.
 
 Mod uses the same keyboard shortcut as vanilla, and the keyboard shortcut may be used even if the panel is hidden.
 
@@ -29,3 +29,4 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
 * Konsi, Kryzchu, Quboid: Code Sharing
 * DX: Testing and Feedback
 * Translations: RilkeXS (Chinese Simplified), mattplayer5103 and Luca Rager (Italian), elGendo87 (Spanish), allegretic (Chinese Traditional), karmel68 (Polish), Mosch12 and Luca Rager (German), Deeheks (French)
+* Mayor Cheeks (formerly known as BootyAddict): Initial Request
