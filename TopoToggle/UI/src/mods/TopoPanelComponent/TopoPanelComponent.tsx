@@ -3,11 +3,12 @@ import styles from "./TopoPanelComponent.module.scss";
 import { Panel, Portal } from "cs2/ui";
 import { VanillaComponentResolver } from "mods/VanillaComponentResolver/VanillaComponentResolver";
 import mod from "../../../mod.json";
-import { useLocalization } from "cs2/l10n";
+import {Unit, useLocalization } from "cs2/l10n";
 import { game } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
 import { CSSProperties, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
+import locale from "../lang/en-US.json";
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -41,6 +42,9 @@ export const TopoPanelComponent = () => {
         trigger(mod.id, "CheckPanelPosition");
     }
 
+    console.log(TerrainElevation);
+    
+
     // The panel should always be there, but will be invisible with no mouse events if it should be hidden.
     return (
         <>
@@ -52,7 +56,7 @@ export const TopoPanelComponent = () => {
                     header={
                             <>
                                 <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>
-                                    <div className={styles.smallSize}>{ TerrainElevation == 0? "E: ???" : "E: " +TerrainElevation.toFixed(2) }</div>
+                                    <div className={styles.smallSize}>{ TerrainElevation == 0? translate("TopoToggle.Text_Label_[ElevationAbbreviation]", locale["TopoToggle.Text_Label_[ElevationAbbreviation]"]) + ": ???" : translate("TopoToggle.Text_Label_[ElevationAbbreviation]", locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+":" + TerrainElevation.toFixed(2)+"m"}</div>
                                 </div>
                                 <div className={ ShowTerrainHitPosition? classNames(styles.hidden, styles.absolutePosition) : styles.absolutePosition}>TOPO</div>
                             </>} // This is intentionally not translatable.   
