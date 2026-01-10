@@ -15,6 +15,8 @@ using HarmonyLib;
 using System.Reflection;
 using TopoToggle.Settings;
 using TopoToggle.Systems;
+using Colossal.Localization;
+
 
 #if DEBUG && EXPORT_EN_US
 using Newtonsoft.Json;
@@ -94,6 +96,8 @@ namespace TopoToggle
             settings.RegisterInOptionsUI();
             log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Loading en-US localization");
             GameManager.instance.localizationManager.AddSource("en-US", new LocaleEN(settings));
+            log.Info($"{nameof(Mod)}.{nameof(OnLoad)} Loading other languages");
+            LoadNonEnglishLocalizations();
 #if DEBUG && EXPORT_EN_US
             GenerateLanguageFile();
 #endif
@@ -147,5 +151,52 @@ namespace TopoToggle
             }
         }
 #endif
+
+
+        private void LoadNonEnglishLocalizations()
+        {
+            Assembly thisAssembly = Assembly.GetExecutingAssembly();
+            string[] resourceNames = thisAssembly.GetManifestResourceNames();
+
+            try
+            {
+                log.Debug($"Reading localizations");
+
+                foreach (string localeID in GameManager.instance.localizationManager.GetSupportedLocales())
+                {
+                    string resourceName = $"{thisAssembly.GetName().Name}.l10n.{localeID}.json";
+                    if (resourceNames.Contains(resourceName))
+                    {
+                        log.Debug($"Found localization file {resourceName}");
+                        try
+                        {
+                            log.Debug($"Reading embedded translation file {resourceName}");
+
+                            // Read embedded file.
+                            using StreamReader reader = new(thisAssembly.GetManifestResourceStream(resourceName));
+                            {
+                                string entireFile = reader.ReadToEnd();
+                                Colossal.Json.Variant varient = Colossal.Json.JSON.Load(entireFile);
+                                Dictionary<string, string> translations = varient.Make<Dictionary<string, string>>();
+                                GameManager.instance.localizationManager.AddSource(localeID, new MemorySource(translations));
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            // Don't let a single failure stop us.
+                            log.Error(e, $"Exception reading localization from embedded file {resourceName}");
+                        }
+                    }
+                    else
+                    {
+                        log.Debug($"Did not find localization file {resourceName}");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error(e, "Exception reading embedded settings localization files");
+            }
+        }
     }
 }

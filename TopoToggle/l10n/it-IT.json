@@ -1,0 +1,10 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Nascondi pannello Topo Toggle",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Nasconde il pannello se si desidera utilizzare solo il tasto.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versione",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Numero versione installata della mod Topo Toggle.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Mostra l'elevazione del terreno sul cursore",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Sostituisci il titolo TOPO nel pannello con l'Elevazione (E) della superficie del terreno relativa al livello del mare sul cursore.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
+}

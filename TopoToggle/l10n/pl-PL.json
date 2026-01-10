@@ -1,0 +1,10 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Ukryj panel Topo Toggle",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Ukryj panel, jeżeli chcesz korzystać ze skrótu klawiszowego w zakładce **Sterowanie**.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Wersja",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Numer wersji zainstalowanego moda Topo Toggle.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Pokaż Wysokość terenu przy kursorze",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Zastąp tytuł TOPO w panelu na Wysokość terenu (W) względem Poziomu morza w miejscu, w którym znajduje się kursor.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "W"
+}

@@ -26,5 +26,6 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
 # Credits 
 * yenyang - Mod Author
 * Luca, Honu: Cooperative Development, Project Discussion and Code Sharing.
-* Konsi,Kryzchu: Code Sharing 
-* DX: Testing and Feedback
+* Konsi, Kryzchu, Quboid: Code Sharing 
+* DX: Testing and Feedback 
+* Translations: RilkeXS (Chinese Simplified), mattplayer5103 and Luca Rager (Italian), elGendo87 (Spanish), allegretic (Chinese Traditional), karmel68 (Polish), Mosch12 and Luca Rager (German), Deeheks (French)

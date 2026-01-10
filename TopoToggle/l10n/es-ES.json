@@ -1,0 +1,10 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Ocultar panel de activación de Topo",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Oculta el panel flotante si es que solo quieres utilizar la asignación de tecla.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versión",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Número de versión instalada del mod Topo Toggle.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Mostrar elevación del terreno del cursor",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Reemplace el título de TOPO en el panel por la Elevación (E) relativa al Nivel de Mar de la superficie del terreno en donde se posicione el cursor.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
+}

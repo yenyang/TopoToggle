@@ -1,0 +1,10 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Topo-Toggle Panel ausblenden",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Blendet das Umschaltfeld aus, wenn Sie nur die Tastenkombination verwenden möchten.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versionsnummer für den installierten Topo-Toggle Mod.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Höhe des Terrains am Cursors anzeigen",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Ersetzt den \"Topografie\" Titel im Panel mit der Höhe (H) des Terrains am Cursor relativ zum Meeresspiegel.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "H"
+}

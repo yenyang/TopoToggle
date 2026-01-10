@@ -16,7 +16,7 @@ const HideTopoTogglePanel$ = bindValue(mod.id, "HideTopoTogglePanel", false);
 const PanelPosition$ = bindValue(mod.id, "PanelPosition", {x: 250, y: 250});
 const RecheckPanelPosition$ = bindValue(mod.id, "RecheckPanelPosition", false);
 const ShowTerrainElevation$ = bindValue(mod.id, "ShowTerrainElevation", false);
-const TerrainElevation$ = bindValue(mod.id, "TerrainElevation", 0);
+const TerrainElevation$ = bindValue(mod.id, "TerrainElevation", ":???");
 
 export const TopoPanelComponent = () => {
     // These get the value of the bindings.
@@ -33,17 +33,14 @@ export const TopoPanelComponent = () => {
 
     // Getting a consistent panel position is a genuine pain. This JS overrides panel position directly using the value saved directly from previous panel position.
     let panel = document.getElementById('TopoTogglePanel');
-    if (panel && RecheckPanelPosition) 
+    if (panel) 
     {
-        panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");
+        panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");    
     }
     else if (!panel)
     {
         trigger(mod.id, "CheckPanelPosition");
     }
-
-    console.log(TerrainElevation);
-    
 
     // The panel should always be there, but will be invisible with no mouse events if it should be hidden.
     return (
@@ -56,7 +53,7 @@ export const TopoPanelComponent = () => {
                     header={
                             <>
                                 <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>
-                                    <div className={styles.smallSize}>{ TerrainElevation == 0? translate("TopoToggle.Text_Label_[ElevationAbbreviation]", locale["TopoToggle.Text_Label_[ElevationAbbreviation]"]) + ": ???" : translate("TopoToggle.Text_Label_[ElevationAbbreviation]", locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+":" + TerrainElevation.toFixed(2)+"m"}</div>
+                                    <div className={styles.smallSize}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
                                 </div>
                                 <div className={ ShowTerrainHitPosition? classNames(styles.hidden, styles.absolutePosition) : styles.absolutePosition}>TOPO</div>
                             </>} // This is intentionally not translatable.   
