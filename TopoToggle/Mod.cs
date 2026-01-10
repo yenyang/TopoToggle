@@ -5,7 +5,6 @@
 
 #define EXPORT_EN_US
 
-using Colossal;
 using Colossal.IO.AssetDatabase;
 using Colossal.Logging;
 using Game;
@@ -16,14 +15,15 @@ using System.Reflection;
 using TopoToggle.Settings;
 using TopoToggle.Systems;
 using Colossal.Localization;
+using System.Linq;
+using System.IO;
+using System.Collections.Generic;
+using System;
 
 
 #if DEBUG && EXPORT_EN_US
+using Colossal;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 #endif
 
