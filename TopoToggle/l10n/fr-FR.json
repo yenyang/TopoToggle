@@ -1,0 +1,9 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Masquer l'interface Topo Toggle",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Masque le panneau si vous ne voulez utiliser que le raccourci clavier.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version actuelle du mod Topo Toggle.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Afficher l'élévation du curseur",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Remplace le titre TOPO dans le panneau par l'élévation (E) du terrain sous le curseur."
+}

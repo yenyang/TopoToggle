@@ -14,6 +14,7 @@ using Game.Prefabs;
 using Game.Simulation;
 using Game.Tools;
 using Game.UI;
+using Game.UI.Localization;
 using System;
 using System.Reflection;
 using TopoToggle.Raycast;
@@ -35,7 +36,7 @@ namespace TopoToggle.Systems
         private ValueBinding<bool> m_HideTopoTogglePanel;
         private ValueBinding<float2> m_PanelPosition;
         private ValueBinding<bool> m_RecheckPanelPosition;
-        private ValueBinding<float> m_TerrainElevation;
+        private ValueBinding<string> m_TerrainElevation;
         private ValueBinding<bool> m_ShowTerrainHitPosition;
         private WaterSystem m_WaterSystem;
         private bool m_FoundPlater;
@@ -82,7 +83,7 @@ namespace TopoToggle.Systems
         {
             m_HideTimer = 30;
             m_HideTopoTogglePanel.Update(true);
-            m_ShowTerrainHitPosition.Update(showTerrainHitPosition);    
+            m_ShowTerrainHitPosition.Update(showTerrainHitPosition);
         }
 
         public override GameMode gameMode => GameMode.GameOrEditor;
@@ -131,12 +132,10 @@ namespace TopoToggle.Systems
             if (mode.IsGame())
             {
                 m_PanelPosition.Update(Mod.settings.GamePanelPosition);
-                m_PanelPosition.TriggerUpdate();
             }
             else if (mode.IsEditor())
             {
                 m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
-                m_PanelPosition.TriggerUpdate();
             }
 
             m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
@@ -178,7 +177,7 @@ namespace TopoToggle.Systems
             AddBinding(m_HideTopoTogglePanel = new ValueBinding<bool>(Mod.ID, "HideTopoTogglePanel", Mod.settings.HidePanel));
             AddBinding(m_PanelPosition = new ValueBinding<float2>(Mod.ID, "PanelPosition", Mod.settings.GamePanelPosition));
             AddBinding(m_RecheckPanelPosition = new ValueBinding<bool>(Mod.ID, "RecheckPanelPosition", false));
-            AddBinding(m_TerrainElevation = new ValueBinding<float>(Mod.ID, "TerrainElevation", 0));
+            AddBinding(m_TerrainElevation = new ValueBinding<string>(Mod.ID, "TerrainElevation", ":???"));
             AddBinding(m_ShowTerrainHitPosition = new ValueBinding<bool>(Mod.ID, "ShowTerrainElevation", Mod.settings.ShowTerrainElevation));
 
             // These establish bindings to listen to from the UI.
@@ -226,8 +225,7 @@ namespace TopoToggle.Systems
             }
 
             if (m_HideTimer == -1 &&
-               !Mod.settings.HidePanel &&
-                Mod.settings.ShowTerrainElevation)
+               !Mod.settings.HidePanel)
             {
                 if (m_TerrainHitTimer <= 0)
                 {
@@ -304,11 +302,11 @@ namespace TopoToggle.Systems
         {
             if (terrainHitPosition.y != 0)
             {
-                m_TerrainElevation.Update(terrainHitPosition.y - m_WaterSystem.SeaLevel);
+                m_TerrainElevation.Update(":" + (terrainHitPosition.y - m_WaterSystem.SeaLevel).ToString("0.00") + "m");
             }
             else
             {
-                m_TerrainElevation.Update(0);
+                m_TerrainElevation.Update(":???");
             }
         }
     }

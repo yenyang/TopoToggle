@@ -20,7 +20,7 @@
 .columnGroup {
     display: flex;
     flex-direction: column;
-    justify-content: left;    
+    justify-content: left;
     text-align: left;
     width: 56rem;
 }
@@ -31,6 +31,7 @@
     width: 56rem;
     text-align: left;
     text-overflow: clip;
+    text-transform: none !important;
 }
 
 .absolutePosition

@@ -3,11 +3,12 @@ import styles from "./TopoPanelComponent.module.scss";
 import { Panel, Portal } from "cs2/ui";
 import { VanillaComponentResolver } from "mods/VanillaComponentResolver/VanillaComponentResolver";
 import mod from "../../../mod.json";
-import { useLocalization } from "cs2/l10n";
+import {Unit, useLocalization } from "cs2/l10n";
 import { game } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
 import { CSSProperties, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
+import locale from "../lang/en-US.json";
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -15,7 +16,7 @@ const HideTopoTogglePanel$ = bindValue(mod.id, "HideTopoTogglePanel", false);
 const PanelPosition$ = bindValue(mod.id, "PanelPosition", {x: 250, y: 250});
 const RecheckPanelPosition$ = bindValue(mod.id, "RecheckPanelPosition", false);
 const ShowTerrainElevation$ = bindValue(mod.id, "ShowTerrainElevation", false);
-const TerrainElevation$ = bindValue(mod.id, "TerrainElevation", 0);
+const TerrainElevation$ = bindValue(mod.id, "TerrainElevation", ":???");
 
 export const TopoPanelComponent = () => {
     // These get the value of the bindings.
@@ -32,9 +33,9 @@ export const TopoPanelComponent = () => {
 
     // Getting a consistent panel position is a genuine pain. This JS overrides panel position directly using the value saved directly from previous panel position.
     let panel = document.getElementById('TopoTogglePanel');
-    if (panel && RecheckPanelPosition) 
+    if (panel) 
     {
-        panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");
+        panel.setAttribute("style", "left: " + PanelPosition.x + "px; top: " + PanelPosition.y + "px;");    
     }
     else if (!panel)
     {
@@ -52,7 +53,7 @@ export const TopoPanelComponent = () => {
                     header={
                             <>
                                 <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>
-                                    <div className={styles.smallSize}>{ TerrainElevation == 0? "E: ???" : "E: " +TerrainElevation.toFixed(2) }</div>
+                                    <div className={styles.smallSize}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
                                 </div>
                                 <div className={ ShowTerrainHitPosition? classNames(styles.hidden, styles.absolutePosition) : styles.absolutePosition}>TOPO</div>
                             </>} // This is intentionally not translatable.   

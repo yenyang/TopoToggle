@@ -1,0 +1,10 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "隱藏 Topo Toggle 面板",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "您只能使用快捷鍵隱藏面板。",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "版本",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "已安裝的 Topo Toggle 版本。",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "顯示游標位置的地形海拔",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "將面板中的「TOPO」標題替換為游標位置的地形表面相對於海平面的海拔（E）。",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
+}
