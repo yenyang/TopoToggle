@@ -47,6 +47,9 @@
 		<Reference Include="Unity.InputSystem">
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+		  <HintPath>$(ManagedPath)\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<Private>false</Private>
 		</Reference>

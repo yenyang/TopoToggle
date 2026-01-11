@@ -11,12 +11,14 @@ using Game;
 using Game.Common;
 using Game.Input;
 using Game.Prefabs;
+using Game.Rendering;
 using Game.Simulation;
 using Game.Tools;
 using Game.UI;
 using Game.UI.Localization;
 using System;
 using System.Reflection;
+using TopoToggle.Extensions;
 using TopoToggle.Raycast;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -46,6 +48,7 @@ namespace TopoToggle.Systems
         private ObjectToolSystem m_ObjectToolSystem;
         private ProxyAction m_ToggleContourKeybind;
         private TopoToggleRaycastSystem m_TopoToggleRaycastSystem;
+        private UndergroundViewSystem m_UndergroundViewSystem;
         private int m_HideTimer = 0;
         private int m_TerrainHitTimer = 30;
 
@@ -167,6 +170,7 @@ namespace TopoToggle.Systems
             m_ObjectToolSystem = World.GetOrCreateSystemManaged<ObjectToolSystem>();
             m_TopoToggleRaycastSystem = World.GetOrCreateSystemManaged<TopoToggleRaycastSystem>();
             m_WaterSystem = World.GetOrCreateSystemManaged<WaterSystem>();
+            m_UndergroundViewSystem = World.GetExistingSystemManaged<UndergroundViewSystem>();
 
             // Event registration
             m_ToolSystem.EventToolChanged += OnToolChanged;
@@ -204,6 +208,13 @@ namespace TopoToggle.Systems
         /// </summary>
         protected override void OnUpdate()
         {
+            // Likely redundant but added just in case.
+            if (m_UndergroundViewSystem.contourLinesOn != m_ForceContourLines.value &&
+                !IsPlatterPrefabActive())
+            {
+                m_UndergroundViewSystem.SetMemberValue("contourLinesOn", m_ForceContourLines);
+            }
+
             if (m_HideTimer > 0)
             {
                 m_RecheckPanelPosition.Update(!m_RecheckPanelPosition.value);
