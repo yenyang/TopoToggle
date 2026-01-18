@@ -3,7 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 
-#define EXPORT_EN_US
+// #define EXPORT_EN_US
 
 using Colossal.IO.AssetDatabase;
 using Colossal.Logging;

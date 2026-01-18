@@ -1,6 +1,6 @@
 <Publish>
   <!--Id must be set in order to update existed mod. it is not required for publishing mod for the first time-->
-  <ModId Value="" />
+  <ModId Value="131404" />
   <!--Name of the mod to display to players-->
   <DisplayName Value="Topo Toggle [Temporary Beta]" />
   <!--Short description of the mod-->
@@ -16,13 +16,13 @@ I am looking for volunteers to help translate the mod into the official language
 
 ## Full Description
 Adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
-First run in the game and editor, the panel starts in top left corner. Move it to where you want, the panel position will be saved and the editor and game panel positions are saved seperately.
+First run in the game and editor, the panel starts in top left corner. Move it to where you want, the panel position will be saved and the editor and game panel positions are saved separately.
 
 Hides vanilla contour line toggle for vanilla tools that normally support toggling contour lines.
 
 Option to hide Topo Toggle panel if you only want to use the keybind.
 
-Option to replace the "TOPO" title in the panel with the coordinate position of the cursor on the terrain surface.
+Option to replace the "TOPO" title in the panel with the elevation of the cursor on the terrain surface.
 
 Mod uses the same keyboard shortcut as vanilla, and the keyboard shortcut may be used even if the panel is hidden.
 
@@ -34,8 +34,10 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
 # Credits 
 * yenyang - Mod Author
 * Luca, Honu: Cooperative Development, Project Discussion and Code Sharing.
-* Konsi,Kryzchu: Code Sharing 
-* DX: Testing and Feedback</LongDescription>
+* Konsi, Kryzchu, Quboid: Code Sharing 
+* DX: Testing and Feedback 
+* Translations: RilkeXS (Chinese Simplified), mattplayer5103 and Luca Rager (Italian), elGendo87 (Spanish), allegretic (Chinese Traditional), karmel68 (Polish), Mosch12 and Luca Rager (German), Deeheks (French)
+* Mayor Cheeks (formerly known as BootyAddict): Initial Request</LongDescription>
   <!--Thumbnail-->
   <Thumbnail Value="Properties/Release/Thumbnail.png" />
   <!--Screenshot, can be set multiple times-->
@@ -43,19 +45,20 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <Screenshot Value="Properties/Previews/2_Bulldoze_Tool.png" />
   <Screenshot Value="Properties/Previews/3_Net_Tool.png" />
   <Screenshot Value="Properties/Previews/4_Editor.png" />
+  <Screenshot Value="Properties/Previews/5_Cursor_Elevation.png" />
   <!--Tag, can be set multiple times-->
   <Tag Value="Code Mod" />
   <!--Link to the forum post where the mod can be discussed-->
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/topo-toggle.1894668/" />
   <!--Version of the mod-->
-  <ModVersion Value="0.9.1.1" />
+  <ModVersion Value="1.0.0.1" />
   <!--Recommended version of the base game to use the mod-->
   <GameVersion Value="1.5.*" />
   <!--Dependency for the mod, can be set multiple times-->
   <Dependency Id="" />
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-  <ChangeLog># Patch v0.9.1.1
-* Changed new option from cursor coordinates to just Elevation relative to sea level.</ChangeLog>
+  <ChangeLog>
+  </ChangeLog>
   <!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
   <ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
   <ExternalLink Type="paypal" Url="https://www.paypal.com/paypalme/YenyangsMods" />

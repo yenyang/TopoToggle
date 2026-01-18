@@ -5,5 +5,6 @@
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Version actuelle du mod Topo Toggle.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Afficher l'élévation du curseur",
-  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Remplace le titre TOPO dans le panneau par l'élévation (E) du terrain sous le curseur."
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Remplace le titre TOPO dans le panneau par l'élévation (E) du terrain sous le curseur.",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "É"
 }

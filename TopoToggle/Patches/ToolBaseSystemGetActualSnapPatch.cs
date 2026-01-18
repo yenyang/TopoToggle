@@ -21,7 +21,8 @@ namespace TopoToggle.Patches
         private static void Postfix(ToolBaseSystem __instance, ref Snap __result)
         {
             TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
-            if (uiSystem.IsPlatterPrefabActive())
+            if (uiSystem.IsPlatterPrefabActive() ||
+                uiSystem is null)
             {
                 return;
             }
