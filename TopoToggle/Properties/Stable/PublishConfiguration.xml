@@ -57,7 +57,7 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <!--Dependency for the mod, can be set multiple times-->
   <Dependency Id="" />
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-  <ChangeLog># Public Release v1.0.1.0
+  <ChangeLog># Patch v1.0.1.0
 * Added mulitiple redundant ways to control the contour lines displaying in case the single previous method did not work as reported by some people.</ChangeLog>
   <!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
   <ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
