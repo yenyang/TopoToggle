@@ -286,7 +286,7 @@ namespace TopoToggle.Systems
             if (m_FoundPlater &&
                 prefab != null &&
                 m_ToolSystem.activeTool == m_ObjectToolSystem &&
-                m_PrefabSystem.TryGetEntity(m_ToolSystem.activePrefab, out Entity prefabEntity) &&
+                m_PrefabSystem.TryGetEntity(prefab, out Entity prefabEntity) &&
                 EntityManager.HasComponent(prefabEntity, m_PlatterComponent))
             {
                 return true;

@@ -51,19 +51,20 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <!--Link to the forum post where the mod can be discussed-->
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/topo-toggle.1894668/" />
   <!--Version of the mod-->
-  <ModVersion Value="1.0.1.0" />
+  <ModVersion Value="1.0.2.0" />
   <!--Recommended version of the base game to use the mod-->
   <GameVersion Value="1.5.*" />
   <!--Dependency for the mod, can be set multiple times-->
   <Dependency Id="" />
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-  <ChangeLog># Patch v1.0.1.0
-* Added mulitiple redundant ways to control the contour lines displaying in case the single previous method did not work as reported by some people.</ChangeLog>
+  <ChangeLog># Patch v1.0.2.0
+* Fix null reference popup sometimes when changing active prefab.</ChangeLog>
   <!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
   <ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
   <ExternalLink Type="paypal" Url="https://www.paypal.com/paypalme/YenyangsMods" />
   <ExternalLink Type="github" Url="https://github.com/yenyang/TopoToggle" />
   <ExternalLink Type="crowdin" Url="https://crowdin.com/project/csl2-mod-topo-toggle" />
+  <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/yenyang_mods" />
   <!-- Supported values Public, Private, Unlisted -->
   <AccessLevel Value="Public" />
 </Publish>

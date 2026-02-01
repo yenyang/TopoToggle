@@ -1,2 +1,2 @@
-﻿# Patch v1.0.1.0
-* Added mulitiple redundant ways to control the contour lines displaying in case the single previous method did not work as reported by some people.
+﻿# Patch v1.0.2.0
+* Fix null reference popup sometimes when changing active prefab.
