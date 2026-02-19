@@ -3,10 +3,9 @@ import styles from "./TopoPanelComponent.module.scss";
 import { Panel, Portal } from "cs2/ui";
 import { VanillaComponentResolver } from "mods/VanillaComponentResolver/VanillaComponentResolver";
 import mod from "../../../mod.json";
-import {Unit, useLocalization } from "cs2/l10n";
+import { useLocalization } from "cs2/l10n";
 import { game } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
-import { CSSProperties, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import locale from "../lang/en-US.json";
 

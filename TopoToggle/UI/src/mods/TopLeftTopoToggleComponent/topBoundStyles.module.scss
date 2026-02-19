@@ -1,0 +1,63 @@
+.toggle {
+  background-color: var(--accentColorNormal);
+
+  &:hover {
+    background-color: var(--accentColorNormal-hover);
+  }
+
+  &:active {
+    background-color: var(--accentColorNormal-pressed);
+  }
+
+  &.selected {
+    background-color: var(--accentColorLight);
+
+    img {
+      filter: drop-shadow(0 1rem 1rem rgba(0, 0, 0, 0.2));
+    }
+  }
+  img {
+    filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.15));
+  }
+}
+
+.columnGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+}
+
+.absolutePosition
+{
+    position: absolute;
+    top: 42rem;
+    left:-5rem;
+}
+
+.relativePosition
+{
+    position: relative;
+    top: 2rem;
+    left:-10rem;
+}
+
+
+.smallSize 
+{
+    font-size: 10rem !important;
+    text-align: left;
+    text-overflow: clip;
+    text-transform: none !important;
+    width:  60rem ;
+    padding-top:  var(--gap2) ;
+    padding-right:  var(--gap2) ;
+    padding-bottom:  var(--gap2) ;
+    padding-left:  var(--gap2) ;
+    background-color:  var(--accentColorNormal) ;
+    border-top-left-radius:  var(--floatingToggleBorderRadius) ;
+    border-top-right-radius:  var(--floatingToggleBorderRadius) ;
+    border-bottom-left-radius:  var(--floatingToggleBorderRadius) ;
+    border-bottom-right-radius:  var(--floatingToggleBorderRadius) ;
+    
+}
