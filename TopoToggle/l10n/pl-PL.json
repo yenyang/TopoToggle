@@ -6,5 +6,11 @@
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Numer wersji zainstalowanego moda Topo Toggle.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Pokaż Wysokość terenu przy kursorze",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Zastąp tytuł TOPO w panelu na Wysokość terenu (W) względem Poziomu morza w miejscu, w którym znajduje się kursor.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Położenie przełącznika",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Ustaw położenie przełącznika, wybierając pływające okno lub jeden z trzech dostępnych w grze układów.",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "Pływające okno",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "Prawy górny",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "Lewy górny",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "Prawy dolny",
   "TopoToggle.Text_Label_[ElevationAbbreviation]": "W"
 }

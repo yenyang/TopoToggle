@@ -6,5 +6,11 @@
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "已安装的 Topo Toggle 模组版本号。",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "显示鼠标指针所在位置的地形海拔",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "将面板中的 TOPO 标题替换为鼠标指针所在地形表面相对于海平面的海拔。",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "游戏切换选项",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "您可以使用浮动面板，或者将切换按钮停靠在游戏窗口的三个角落之一。",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "浮动面板",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "右上角",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "左上角",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "底部右侧",
   "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
 }
