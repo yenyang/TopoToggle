@@ -48,6 +48,9 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <Screenshot Value="Properties/Previews/3_Net_Tool.png" />
   <Screenshot Value="Properties/Previews/4_Editor.png" />
   <Screenshot Value="Properties/Previews/5_Cursor_Elevation.png" />
+	<Screenshot Value="Properties/Previews/6_Game_Top_Left.png" />
+	<Screenshot Value="Properties/Previews/7_Game_Top_Right.png" />
+	<Screenshot Value="Properties/Previews/8_Game_Bottom_Right.png" />
   <!--Tag, can be set multiple times-->
   <Tag Value="Code Mod" />
   <!--Link to the forum post where the mod can be discussed-->
