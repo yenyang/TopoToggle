@@ -7,7 +7,7 @@ If you want to say thank you with a donation you can do so on Paypal or Buy me a
 I am looking for volunteers to help translate the mod into the official languages. For those interested please find the project in the crowdin or discord link. CSL2:CODEMODS -> mods-wip -> Topo Toggle: Translations and Public Beta
 
 ## Full Description
-Adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
+By default, adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
 First run in the game and editor, the panel starts in top left corner. Move it to where you want, the panel position will be saved and the editor and game panel positions are saved separately.
 
 Option to bind the panel in-Game to Top Left, Top Right, or Bottom Right groups of buttons.
