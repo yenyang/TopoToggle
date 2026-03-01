@@ -63,7 +63,8 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <Dependency Id="" />
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
   <ChangeLog># Update v1.1.0
-* Added option to bind the panel in-Game to Top Left, Top Right, or Bottom Right groups of buttons.</ChangeLog>
+* Added option to bind the panel in-Game to Top Left, Top Right, or Bottom Right groups of buttons.
+* Updated localizations.</ChangeLog>
   <!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
   <ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
   <ExternalLink Type="paypal" Url="https://www.paypal.com/paypalme/YenyangsMods" />
