@@ -22,6 +22,7 @@ using TopoToggle.Extensions;
 using TopoToggle.Raycast;
 using Unity.Entities;
 using Unity.Mathematics;
+using static TopoToggle.Settings.Settings;
 # if  LOG_VANILLA_KEYBINDS
 using Game.Input;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace TopoToggle.Systems
         private ValueBinding<bool> m_RecheckPanelPosition;
         private ValueBinding<string> m_TerrainElevation;
         private ValueBinding<bool> m_ShowTerrainHitPosition;
+        private ValueBinding<int> m_GameToggleOption;
         private WaterSystem m_WaterSystem;
         private bool m_FoundPlater;
         private ComponentType m_PlatterComponent;
@@ -89,6 +91,18 @@ namespace TopoToggle.Systems
             m_ShowTerrainHitPosition.Update(showTerrainHitPosition);
         }
 
+        public void UpdateGameToggleOption(Settings.Settings.GameToggleOptions gameToggleOption)
+        {
+            if (m_ToolSystem.actionMode.IsGame())
+            {
+                m_GameToggleOption.Update((int)gameToggleOption);
+            }
+            else
+            {
+                m_GameToggleOption.Update(0);
+            }
+        }
+
         public override GameMode gameMode => GameMode.GameOrEditor;
 
         protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
@@ -135,10 +149,12 @@ namespace TopoToggle.Systems
             if (mode.IsGame())
             {
                 m_PanelPosition.Update(Mod.settings.GamePanelPosition);
+                m_GameToggleOption.Update((int)Mod.settings.GameToggleOption);
             }
             else if (mode.IsEditor())
             {
                 m_PanelPosition.Update(Mod.settings.EditorPanelPosition);
+                m_GameToggleOption.Update(0);
             }
 
             m_ToggleContourKeybind.shouldBeEnabled = mode.IsGameOrEditor();
@@ -183,6 +199,7 @@ namespace TopoToggle.Systems
             AddBinding(m_RecheckPanelPosition = new ValueBinding<bool>(Mod.ID, "RecheckPanelPosition", false));
             AddBinding(m_TerrainElevation = new ValueBinding<string>(Mod.ID, "TerrainElevation", ":???"));
             AddBinding(m_ShowTerrainHitPosition = new ValueBinding<bool>(Mod.ID, "ShowTerrainElevation", Mod.settings.ShowTerrainElevation));
+            AddBinding(m_GameToggleOption = new ValueBinding<int>(Mod.ID, "GameToggleOption", (int)Mod.settings.GameToggleOption));
 
             // These establish bindings to listen to from the UI.
             AddBinding(new TriggerBinding(Mod.ID, "ToggleContourLines", ToggleContourLines));

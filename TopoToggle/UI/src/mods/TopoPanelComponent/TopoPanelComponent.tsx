@@ -3,12 +3,12 @@ import styles from "./TopoPanelComponent.module.scss";
 import { Panel, Portal } from "cs2/ui";
 import { VanillaComponentResolver } from "mods/VanillaComponentResolver/VanillaComponentResolver";
 import mod from "../../../mod.json";
-import {Unit, useLocalization } from "cs2/l10n";
+import { useLocalization } from "cs2/l10n";
 import { game } from "cs2/bindings";
 import ContourLinesSrc from "../../images/ContourLines.svg";
-import { CSSProperties, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import locale from "../lang/en-US.json";
+import { GameToggleOptions } from "Domain/GameToggleOptions";
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -17,6 +17,8 @@ const PanelPosition$ = bindValue(mod.id, "PanelPosition", {x: 250, y: 250});
 const RecheckPanelPosition$ = bindValue(mod.id, "RecheckPanelPosition", false);
 const ShowTerrainElevation$ = bindValue(mod.id, "ShowTerrainElevation", false);
 const TerrainElevation$ = bindValue(mod.id, "TerrainElevation", ":???");
+const GameToggleOption$ = bindValue(mod.id, "GameToggleOption", GameToggleOptions.FloatingPanel);
+
 
 export const TopoPanelComponent = () => {
     // These get the value of the bindings.
@@ -27,7 +29,7 @@ export const TopoPanelComponent = () => {
     const RecheckPanelPosition = useValue(RecheckPanelPosition$);
     const ShowTerrainHitPosition = useValue(ShowTerrainElevation$);
     const TerrainElevation = useValue(TerrainElevation$);
-
+    const GameToggleOption = useValue(GameToggleOption$);
     // translation handling. Translates using locale keys that are defined in C# or fallback string here.    
     const { translate } = useLocalization();
 
@@ -49,7 +51,7 @@ export const TopoPanelComponent = () => {
                 <Panel                 
                     id = "TopoTogglePanel"    
                     draggable
-                    className={ (isPhotoMode || HideTopoTogglePanel)? classNames(styles.panel, styles.hidden) : styles.panel}
+                    className={ (isPhotoMode || HideTopoTogglePanel || GameToggleOption != GameToggleOptions.FloatingPanel)? classNames(styles.panel, styles.hidden) : styles.panel}
                     header={
                             <>
                                 <div className={ ShowTerrainHitPosition? styles.columnGroup : classNames(styles.hidden, styles.columnGroup)}>

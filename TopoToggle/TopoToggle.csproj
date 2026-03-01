@@ -5,7 +5,7 @@
 		<LangVersion>9</LangVersion>
 		<!--The file where mod information which is required for publishing mod on PDX mods are stored-->
 		<PublishConfigurationPath>Properties\$(Configuration)\PublishConfiguration.xml</PublishConfigurationPath>
-		<AssemblyVersion>1.0.2.0</AssemblyVersion>
+		<AssemblyVersion>1.1.0</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
@@ -20,50 +20,51 @@
 
 	<ItemGroup>
 		<Reference Include="Game">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.Core">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.Logging">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.IO.AssetDatabase">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.UI">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.UI.Binding">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.Localization">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Newtonsoft.Json">
 		  <HintPath>$(ManagedPath)\Newtonsoft.Json.dll</HintPath>
 		  <Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.InputSystem">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
 		  <HintPath>$(ManagedPath)\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+		  <Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.Burst">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.Collections">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.Entities">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Unity.Mathematics">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Colossal.Mathematics">
 			<HintPath>$(ManagedPath)\Colossal.Mathematics.dll</HintPath>
@@ -72,14 +73,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Reference Update="C:\Program Files %28x86%29\Steam\steamapps\common\Cities Skylines II\Cities2_Data\Managed\mscorlib.dll">
+		  <Private>False</Private>
+		</Reference>
 		<Reference Update="System">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Update="System.Core">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 		<Reference Update="System.Data">
-			<Private>false</Private>
+			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 
@@ -120,6 +124,42 @@
 	  <None Update="LICENSE.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.Drawing">
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.IO.Compression.FileSystem">
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.Numerics">
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.Runtime.Serialization">
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.Xml">
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Update="System.Xml.Linq">
+	    <Private>False</Private>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

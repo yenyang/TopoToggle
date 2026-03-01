@@ -11,6 +11,7 @@ using Game.Settings;
 using Game.Tools;
 using Game.UI;
 using Game.UI.Widgets;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using TopoToggle.Systems;
 using Unity.Entities;
@@ -34,6 +35,20 @@ namespace TopoToggle.Settings
         /// </summary>
         public const string About = "About";
 
+        /// <summary>
+        /// Different Locations in Game to have the topo toggle.
+        /// </summary>
+        public enum GameToggleOptions
+        {
+            FloatingPanel,
+
+            TopLeft,
+
+            TopRight,
+
+            BottomRight,
+        }
+
 
         public Settings(IMod mod) : base(mod)
         {
@@ -52,6 +67,11 @@ namespace TopoToggle.Settings
         [SettingsUISection(General, General)]
         [SettingsUISetter(typeof(Settings), nameof(HidePanelToggled))]
         public bool HidePanel { get; set; }
+
+        [SettingsUISection(General, General)]
+        [SettingsUIDisableByCondition(typeof(Settings), nameof(HidePanel))]
+        [SettingsUISetter(typeof (Settings), nameof(SetGameToggleOption))]
+        public GameToggleOptions GameToggleOption { get; set; }
 
         [SettingsUISection(General, General)]
         [SettingsUISetter(typeof(Settings), nameof(ShowTerrainHitPositionToggled))]
@@ -83,6 +103,12 @@ namespace TopoToggle.Settings
         {
             TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
             uiSystem.UpdateShowTerrainHitPosition(value);
+        }
+
+        public void SetGameToggleOption(GameToggleOptions optionSelected)
+        {
+            TopoToggleUISystem uiSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<TopoToggleUISystem>();
+            uiSystem.UpdateGameToggleOption(optionSelected);
         }
     }
 }

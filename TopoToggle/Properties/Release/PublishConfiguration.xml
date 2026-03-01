@@ -1,6 +1,6 @@
 <Publish>
   <!--Id must be set in order to update existed mod. it is not required for publishing mod for the first time-->
-  <ModId Value="131404" />
+  <ModId Value="135474" />
   <!--Name of the mod to display to players-->
   <DisplayName Value="Topo Toggle [Temporary Beta]" />
   <!--Short description of the mod-->
@@ -9,14 +9,16 @@
   <LongDescription>Toggle Contour Lines anytime in game or editor.
 
 ## Donations
-If you want to say thank you with a donation you can do so on Paypal.
+If you want to say thank you with a donation you can do so on Paypal or Buy me a Coffee.
 
 ## Translations
 I am looking for volunteers to help translate the mod into the official languages. For those interested please find the project in the crowdin or discord link. CSL2:CODEMODS -&gt; mods-wip -&gt; Topo Toggle: Translations and Public Beta
 
 ## Full Description
-Adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
+By default, adds a small draggable UI panel with a button for toggling contour lines for the game and editor. This panel is available while using any tool, but not photo mode. 
 First run in the game and editor, the panel starts in top left corner. Move it to where you want, the panel position will be saved and the editor and game panel positions are saved separately.
+
+Option to bind the panel in-Game to Top Left, Top Right, or Bottom Right groups of buttons.
 
 Hides vanilla contour line toggle for vanilla tools that normally support toggling contour lines.
 
@@ -34,9 +36,9 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
 # Credits 
 * yenyang - Mod Author
 * Luca, Honu: Cooperative Development, Project Discussion and Code Sharing.
-* Konsi, Kryzchu, Quboid: Code Sharing 
-* DX: Testing and Feedback 
-* Translations: RilkeXS (Chinese Simplified), mattplayer5103 and Luca Rager (Italian), elGendo87 (Spanish), allegretic (Chinese Traditional), karmel68 (Polish), Mosch12 and Luca Rager (German), Deeheks (French)
+* Konsi, Kryzchu, Quboid, elGendo87: Code Sharing
+* DX, macluk80: Testing and Feedback
+* Translations: RilkeXS (Chinese Simplified), mattplayer5103 and Luca Rager (Italian), elGendo87 (Spanish), allegretic (Chinese Traditional), karmel68 (Polish), Mosch12 and Luca Rager (German), Deeheks and Edou24 (French)
 * Mayor Cheeks (formerly known as BootyAddict): Initial Request</LongDescription>
   <!--Thumbnail-->
   <Thumbnail Value="Properties/Release/Thumbnail.png" />
@@ -51,7 +53,7 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <!--Link to the forum post where the mod can be discussed-->
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/topo-toggle.1894668/" />
   <!--Version of the mod-->
-  <ModVersion Value="1.0.0.1" />
+  <ModVersion Value="1.0.3.0" />
   <!--Recommended version of the base game to use the mod-->
   <GameVersion Value="1.5.*" />
   <!--Dependency for the mod, can be set multiple times-->
@@ -64,6 +66,7 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <ExternalLink Type="paypal" Url="https://www.paypal.com/paypalme/YenyangsMods" />
   <ExternalLink Type="github" Url="https://github.com/yenyang/TopoToggle" />
   <ExternalLink Type="crowdin" Url="https://crowdin.com/project/csl2-mod-topo-toggle" />
+  <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/yenyang_mods" />
   <!-- Supported values Public, Private, Unlisted -->
   <AccessLevel Value="Unlisted" />
 </Publish>
