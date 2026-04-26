@@ -7,4 +7,6 @@ export enum GameToggleOptions
     TopRight,
 
     BottomRight,
+
+    UniversalModButton,
 }

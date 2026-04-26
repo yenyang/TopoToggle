@@ -1,11 +1,17 @@
 
-.absolutePosition
+:global(.legacy-interface) .absolutePosition
 {
     position: absolute;
     top: 60rem;
-    left:-7rem;
+    right:-3rem;
 }
 
+.absolutePosition
+{
+    position: absolute;
+    top: calc(var(--toolbarToggleButtonSize) + 15rem);
+    right:-7rem;
+}
 
 .relativePosition
 {
@@ -15,7 +21,11 @@
 }
 
 .overrideHeight{
-  height: 70rem !important;
+    height: calc(var(--toolbarToggleButtonSize) + 20rem);
+}
+
+:global(.legacy-interface) .overrideHeight {
+    height: 70rem !important;
 }
 
 .smallSize 

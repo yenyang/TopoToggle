@@ -47,6 +47,8 @@ namespace TopoToggle.Settings
             TopRight,
 
             BottomRight,
+
+            UniversalModButton,
         }
 
 

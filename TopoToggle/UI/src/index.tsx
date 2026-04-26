@@ -18,6 +18,7 @@ const register: ModRegistrar = (moduleRegistry) => {
      moduleRegistry.append('GameTopLeft', TopLeftTopoToggleComponent);
      moduleRegistry.append('GameTopRight', TopRightTopoToggleComponent);
      moduleRegistry.append('GameBottomRight', BottomRightTopoToggleComponent);
+     // moduleRegistry.append('UniversalModMenu', BottomRightTopoToggleComponent);
 
      // Ensures tool option is visible for water tool in the editor.
       moduleRegistry.extend("game-ui/game/components/tool-options/tool-options-panel.tsx", 'useToolOptionsVisible', ToolOptionsVisibility);
