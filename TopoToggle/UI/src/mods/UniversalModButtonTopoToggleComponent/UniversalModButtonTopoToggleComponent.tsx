@@ -1,8 +1,8 @@
-import { Button, Portal } from "cs2/ui";
+import { Button } from "cs2/ui";
 import ContourLinesSrc from "../../images/ContourLines.svg";
 import { bindValue, trigger, useValue } from "cs2/api";
 import mod from "../../../mod.json";
-import styles from "../BottomRightTopoToggleComponent/bottomRightStyles.module.scss";
+import styles from "../UniversalModButtonTopoToggleComponent/universalModButtonStyles.module.scss";
 import classNames from "classnames";
 import { useLocalization } from "cs2/l10n";
 import locale from "../lang/en-US.json";
@@ -20,7 +20,7 @@ const rightMenuStyles = getModule("game-ui/game/components/right-menu/right-menu
 
 const rightMenuButtonStyles = getModule("game-ui/game/components/right-menu/right-menu-button.module.scss", "classes");
 
-export const BottomRightTopoToggleComponent = () => 
+export const UniversalModButtonTopoToggleComponent = () => 
 {
     const ForceContourLines = useValue(ForceContourLines$);    
     const ShowTerrainHitPosition = useValue(ShowTerrainElevation$);
@@ -32,8 +32,8 @@ export const BottomRightTopoToggleComponent = () =>
     
     return     (
         <>
-            {GameToggleOption == GameToggleOptions.BottomRight && !HideTopoTogglePanel && (
-                <div className={classNames(styles.bottomRightMargins, ShowTerrainHitPosition? styles.overrideHeight: "")}>
+            {GameToggleOption == GameToggleOptions.UniversalModButton && !HideTopoTogglePanel && (
+                <>
                     <div className={rightMenuStyles.item}>
                             <Button
                                 src={ContourLinesSrc}
@@ -44,9 +44,9 @@ export const BottomRightTopoToggleComponent = () =>
                         
                     </div>
                     { ShowTerrainHitPosition && 
-                        <div className={classNames(styles.smallSize, styles.absolutePosition)}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
+                            <div className={classNames(styles.smallSize, styles.absolutePosition)}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
                     }
-                </div>
+                </>
             )}
         </>
     );

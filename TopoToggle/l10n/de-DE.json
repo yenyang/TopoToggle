@@ -6,5 +6,11 @@
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versionsnummer für den installierten Topo-Toggle Mod.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Höhe des Terrains am Cursors anzeigen",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Ersetzt den \"Topografie\" Titel im Panel mit der Höhe (H) des Terrains am Cursor relativ zum Meeresspiegel.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Option zum Ein- und Ausschalten des Spiels",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Du kannst das schwebende Bedienfeld verwenden oder den Schalter an eine von drei Optionen im Spiel andocken.",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "Schwimmende Platte",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "Oben rechts",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "Oben links",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "Unten rechts",
   "TopoToggle.Text_Label_[ElevationAbbreviation]": "H"
 }
