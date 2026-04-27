@@ -62,7 +62,7 @@ Custom tools will need to detect this mod to support hiding duplicate contour to
   <!--Dependency for the mod, can be set multiple times-->
   <Dependency Id="" />
   <!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-  <ChangeLog># Update v1.1.1
+  <ChangeLog># Patch v1.1.1
 * Added option to bind the panel in-Game to Univeral Mod Button group of buttons. It's not an ideal option.
 * UI updates related to game v1.5.7f1.
 * Updated localizations.</ChangeLog>
