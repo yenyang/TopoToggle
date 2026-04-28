@@ -42,3 +42,20 @@
     margin-top: 10rem;
     margin-bottom: 10rem;
 }
+
+.overrideBackGroundColor 
+{
+    background-color: var(--toolbarButtonColor)!important; 
+    
+    &:hover {
+        background-color: var(--toolbarButtonColor-hover)!important; 
+    }
+
+    &:active {
+        background-color: var(--toolbarButtonColor-pressed)!important; 
+    }
+
+    &.selected {
+        background-color: var(--commonCyan) !important; 
+    }
+}

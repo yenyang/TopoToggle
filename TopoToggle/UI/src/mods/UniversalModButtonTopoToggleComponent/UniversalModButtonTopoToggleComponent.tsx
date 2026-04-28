@@ -8,6 +8,7 @@ import { useLocalization } from "cs2/l10n";
 import locale from "../lang/en-US.json";
 import { getModule } from "cs2/modding";
 import { GameToggleOptions } from "Domain/GameToggleOptions";
+import umbStyle from "../UniversalModButtonTopoToggleComponent/universalModButtonStyles.module.scss"
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -34,15 +35,12 @@ export const UniversalModButtonTopoToggleComponent = () =>
         <>
             {GameToggleOption == GameToggleOptions.UniversalModButton && !HideTopoTogglePanel && (
                 <>
-                    <div className={rightMenuStyles.item}>
-                            <Button
-                                src={ContourLinesSrc}
-                                variant="icon"
-                                className={classNames( ForceContourLines? "selected": "" , rightMenuButtonStyles.button)}
-                                onSelect={() => trigger(mod.id, "ToggleContourLines")}
-                            />                
-                        
-                    </div>
+                    <Button
+                        src={ContourLinesSrc}
+                        variant="floating"
+                        className={classNames({ [umbStyle.selected]: ForceContourLines }, umbStyle.overrideBackGroundColor)}
+                        onSelect={() => trigger(mod.id, "ToggleContourLines")}
+                    />   
                     { ShowTerrainHitPosition && 
                             <div className={classNames(styles.smallSize, styles.absolutePosition)}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
                     }
