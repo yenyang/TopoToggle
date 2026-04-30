@@ -2,26 +2,14 @@
 :global(.legacy-interface) .absolutePosition
 {
     position: absolute;
-    top: 60rem;
-    right:-3rem;
+    top: 40rem;
+    left: 5rem;
 }
 
 .absolutePosition
 {
     position: absolute;
-    top: calc(var(--toolbarToggleButtonSize) + 15rem);
-    right:-7rem;
-}
-
-.relativePosition
-{
-    position: relative;
-    top: 2rem;
-    left:-10rem;
-}
-
-.overrideHeight{
-    height: calc(var(--toolbarToggleButtonSize) + 20rem);
+    top: calc(var(--toolbarToggleButtonSize) - 5rem);
 }
 
 :global(.legacy-interface) .overrideHeight {
@@ -34,7 +22,8 @@
     text-align: left;
     text-overflow: clip;
     text-transform: none !important;
-    width:  60rem ;
+    width:  55rem ;
+    height: 17rem;
     padding-top:  var(--gap2) ;
     padding-right:  var(--gap2) ;
     padding-bottom:  var(--gap2) ;
@@ -44,11 +33,29 @@
     border-top-right-radius:  var(--floatingToggleBorderRadius) ;
     border-bottom-left-radius:  var(--floatingToggleBorderRadius) ;
     border-bottom-right-radius:  var(--floatingToggleBorderRadius) ;
-    
+    margin-bottom: 0rem !important;
+    margin-right: 0rem !important;
 }
 
 .bottomRightMargins
 {
     margin-top: 10rem;
     margin-bottom: 10rem;
+}
+
+.overrideBackGroundColor 
+{
+    background-color: var(--toolbarButtonColor)!important; 
+    
+    &:hover {
+        background-color: var(--toolbarButtonColor-hover)!important; 
+    }
+
+    &:active {
+        background-color: var(--toolbarButtonColor-pressed)!important; 
+    }
+
+    &.selected {
+        background-color: var(--commonCyan) !important; 
+    }
 }

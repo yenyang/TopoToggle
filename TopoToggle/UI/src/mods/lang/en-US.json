@@ -7,10 +7,11 @@
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Show Terrain Elevation of Cursor",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Replace the TOPO title in the panel with the Elevation (E) relative to Sea Level of the terrain surface at the cursor.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Game Toggle Option",
-  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "You can use the Floating Panel, or dock the toggle to one of three in-game options.",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "You can use the Floating Panel, or dock the toggle to multiple in-game options.",
   "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "Floating Panel",
   "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "Top Right",
   "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "Top Left",
   "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "Bottom Right",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[UniversalModButton]": "Universal Mod Button",
   "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
 }

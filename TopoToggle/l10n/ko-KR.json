@@ -1,0 +1,16 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "지형 전환 패널 숨기기",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "단축키만 사용하려는 경우 패널을 숨깁니다.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "버전",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "설치된 지형 전환 모드 버전 정보.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "커서 위치 지형 고도 표시",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "커서가 위치한 지형의 해수면 기준 고도(E)를 패널의 지형 제목 대신 실시간으로 표시합니다.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "게임 기능 전환 설정",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "자유롭게 이동 가능한 플로팅 패널을 사용하거나, 게임 내 제공되는 세 가지 위치 중 하나에 토글을 고정할 수 있습니다.",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "부유식 패널",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "오른쪽 상단",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "왼쪽 상단",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "오른쪽 하단",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
+}

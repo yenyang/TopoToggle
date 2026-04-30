@@ -8,21 +8,17 @@
 using Colossal.Serialization.Entities;
 using Colossal.UI.Binding;
 using Game;
-using Game.Common;
 using Game.Input;
 using Game.Prefabs;
 using Game.Rendering;
 using Game.Simulation;
 using Game.Tools;
 using Game.UI;
-using Game.UI.Localization;
 using System;
 using System.Reflection;
 using TopoToggle.Extensions;
-using TopoToggle.Raycast;
 using Unity.Entities;
 using Unity.Mathematics;
-using static TopoToggle.Settings.Settings;
 # if  LOG_VANILLA_KEYBINDS
 using Game.Input;
 using System.Collections.Generic;

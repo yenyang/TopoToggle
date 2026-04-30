@@ -1,13 +1,14 @@
-import { Button, Portal } from "cs2/ui";
+import { Button } from "cs2/ui";
 import ContourLinesSrc from "../../images/ContourLines.svg";
 import { bindValue, trigger, useValue } from "cs2/api";
 import mod from "../../../mod.json";
-import styles from "../BottomRightTopoToggleComponent/bottomRightStyles.module.scss";
+import styles from "../UniversalModButtonTopoToggleComponent/universalModButtonStyles.module.scss";
 import classNames from "classnames";
 import { useLocalization } from "cs2/l10n";
 import locale from "../lang/en-US.json";
 import { getModule } from "cs2/modding";
 import { GameToggleOptions } from "Domain/GameToggleOptions";
+import umbStyle from "../UniversalModButtonTopoToggleComponent/universalModButtonStyles.module.scss"
 
 // These establishes the binding with C# side. Without C# side game ui will crash.
 const ForceContourLines$ = bindValue(mod.id, "ForceContourLines", false);
@@ -20,7 +21,7 @@ const rightMenuStyles = getModule("game-ui/game/components/right-menu/right-menu
 
 const rightMenuButtonStyles = getModule("game-ui/game/components/right-menu/right-menu-button.module.scss", "classes");
 
-export const BottomRightTopoToggleComponent = () => 
+export const UniversalModButtonTopoToggleComponent = () => 
 {
     const ForceContourLines = useValue(ForceContourLines$);    
     const ShowTerrainHitPosition = useValue(ShowTerrainElevation$);
@@ -32,21 +33,18 @@ export const BottomRightTopoToggleComponent = () =>
     
     return     (
         <>
-            {GameToggleOption == GameToggleOptions.BottomRight && !HideTopoTogglePanel && (
-                <div className={classNames(styles.bottomRightMargins, ShowTerrainHitPosition? styles.overrideHeight: "")}>
-                    <div className={rightMenuStyles.item}>
-                            <Button
-                                src={ContourLinesSrc}
-                                variant="icon"
-                                className={classNames( ForceContourLines? "selected": "" , rightMenuButtonStyles.button)}
-                                onSelect={() => trigger(mod.id, "ToggleContourLines")}
-                            />                
-                        
-                    </div>
+            {GameToggleOption == GameToggleOptions.UniversalModButton && !HideTopoTogglePanel && (
+                <>
+                    <Button
+                        src={ContourLinesSrc}
+                        variant="floating"
+                        className={classNames({ [umbStyle.selected]: ForceContourLines }, umbStyle.overrideBackGroundColor)}
+                        onSelect={() => trigger(mod.id, "ToggleContourLines")}
+                    />   
                     { ShowTerrainHitPosition && 
-                        <div className={classNames(styles.smallSize, styles.absolutePosition)}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
+                            <div className={classNames(styles.smallSize, styles.absolutePosition)}>{ translate("TopoToggle.Text_Label_[ElevationAbbreviation]" ,locale["TopoToggle.Text_Label_[ElevationAbbreviation]"])+ TerrainElevation}</div>
                     }
-                </div>
+                </>
             )}
         </>
     );

@@ -6,5 +6,11 @@
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Número de versión instalada del mod Topo Toggle.",
   "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Mostrar elevación del terreno del cursor",
   "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Reemplace el título de TOPO en el panel por la Elevación (E) relativa al Nivel de Mar de la superficie del terreno en donde se posicione el cursor.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Opción de activador",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Puedes usar el Panel Flotante, o acoplar el interruptor a una de las tres opciones del juego.",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "Panel flotante",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "Superior derecha",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "Superior izquierda",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "Inferior derecha",
   "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
 }

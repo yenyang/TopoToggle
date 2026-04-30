@@ -6,6 +6,7 @@ import { ToolOptionsVisibility } from "mods/ToolOptionsVisible/toolOptionsVisibl
 import { TopLeftTopoToggleComponent } from "mods/TopLeftTopoToggleComponent/TopLeftTopoToggleComponent";
 import { TopRightTopoToggleComponent } from "mods/TopRightTopoToggleComponent/TopRightTopoToggleComponent";
 import { BottomRightTopoToggleComponent } from "mods/BottomRightTopoToggleComponent/BottomRightTopoToggleComponent";
+import { UniversalModButtonTopoToggleComponent } from "mods/UniversalModButtonTopoToggleComponent/UniversalModButtonTopoToggleComponent";
 
 const register: ModRegistrar = (moduleRegistry) => {
       // The vanilla component resolver is a singleton that helps extrant and maintain components from game that were not specifically exposed.
@@ -18,6 +19,7 @@ const register: ModRegistrar = (moduleRegistry) => {
      moduleRegistry.append('GameTopLeft', TopLeftTopoToggleComponent);
      moduleRegistry.append('GameTopRight', TopRightTopoToggleComponent);
      moduleRegistry.append('GameBottomRight', BottomRightTopoToggleComponent);
+     moduleRegistry.append('UniversalModMenu', UniversalModButtonTopoToggleComponent);
 
      // Ensures tool option is visible for water tool in the editor.
       moduleRegistry.extend("game-ui/game/components/tool-options/tool-options-panel.tsx", 'useToolOptionsVisible', ToolOptionsVisibility);

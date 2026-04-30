@@ -5,7 +5,7 @@
 		<LangVersion>9</LangVersion>
 		<!--The file where mod information which is required for publishing mod on PDX mods are stored-->
 		<PublishConfigurationPath>Properties\$(Configuration)\PublishConfiguration.xml</PublishConfigurationPath>
-		<AssemblyVersion>1.1.0</AssemblyVersion>
+		<AssemblyVersion>1.1.1</AssemblyVersion>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
@@ -93,6 +93,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="lang\" />
+	  <Folder Include="Properties\lang\" />
 	  <Folder Include="Properties\Stable\" />
 	  <Folder Include="Properties\Release\" />
 	  <Folder Include="UI\src\mods\lang\" />
@@ -121,6 +123,9 @@
 	</Target>
 
 	<ItemGroup>
+	  <None Update="lang\nl-NL.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="LICENSE.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>

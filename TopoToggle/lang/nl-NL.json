@@ -1,0 +1,16 @@
+{
+  "Options.SECTION[TopoToggle.TopoToggle.Mod]": "Topo Toggle",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Topo Toggle-paneel verbergen",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.HidePanel]": "Verbergt het paneel als u alleen de sneltoets wilt gebruiken.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versie",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.Version]": "Versienummer van de geïnstalleerde Topo Toggle-mod.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Terreinelevatie van de cursor weergeven",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.ShowTerrainElevation]": "Vervangt de TOPO-titel in het paneel door de Elevatie (E) relatief aan het zeeniveau van het terreinoppervlak op de cursorpositie.",
+  "Options.OPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "Spelschakelaaroptie",
+  "Options.OPTION_DESCRIPTION[TopoToggle.TopoToggle.Mod.Settings.GameToggleOption]": "U kunt het zwevende paneel gebruiken of de schakelaar koppelen aan een van de drie opties in het spel.",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[FloatingPanel]": "Zwevend paneel",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopRight]": "Rechtsboven",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[TopLeft]": "Linksboven",
+  "Options.TopoToggle.TopoToggle.Mod.GAMETOGGLEOPTIONS[BottomRight]": "Rechtsonder",
+  "TopoToggle.Text_Label_[ElevationAbbreviation]": "E"
+}

@@ -30,12 +30,13 @@ namespace TopoToggle.Settings
                 { m_Setting.GetOptionDescLocaleID(nameof(Settings.ShowTerrainElevation)), $"Replace the TOPO title in the panel with the Elevation (E) relative to Sea Level of the terrain surface at the cursor."  },
 
                 { m_Setting.GetOptionLabelLocaleID(nameof(Settings.GameToggleOption)), "Game Toggle Option" },
-                { m_Setting.GetOptionDescLocaleID(nameof(Settings.GameToggleOption)), "You can use the Floating Panel, or dock the toggle to one of three in-game options." },
+                { m_Setting.GetOptionDescLocaleID(nameof(Settings.GameToggleOption)), "You can use the Floating Panel, or dock the toggle to multiple in-game options." },
 
                 { m_Setting.GetEnumValueLocaleID(Settings.GameToggleOptions.FloatingPanel), "Floating Panel" },
                 { m_Setting.GetEnumValueLocaleID(Settings.GameToggleOptions.TopRight), "Top Right" },
                 { m_Setting.GetEnumValueLocaleID(Settings.GameToggleOptions.TopLeft), "Top Left" },
                 { m_Setting.GetEnumValueLocaleID(Settings.GameToggleOptions.BottomRight), "Bottom Right" },
+                { m_Setting.GetEnumValueLocaleID(Settings.GameToggleOptions.UniversalModButton), "Universal Mod Button" },
 
                 { TextLabel("ElevationAbbreviation"), "E" },
             };
